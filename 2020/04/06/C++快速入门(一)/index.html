@@ -22,8 +22,8 @@
 <meta name="keywords" content="C/C++" />
 
 
-<meta name="description" content="C/C++快速入门1.基本数据类型1.1 变量的定义&ensp;&ensp;&ensp;&ensp;变量是在程序运行过程中其值可以改变的的量，需要在定义后才可以使用，其定义格式为：
-1变量类型 ..." />
+<meta name="description" content="C/C++快速入门(一)1.基本数据类型1.1 变量的定义&ensp;&ensp;&ensp;&ensp;变量是在程序运行过程中其值可以改变的的量，需要在定义后才可以使用，其定义格式为：
+1变量..." />
 
 
 <meta name="robots" content="all" />
@@ -34,7 +34,7 @@
 
 <title>
     
-    C/C++快速入门 |
+    C/C++快速入门(一) |
     
     Reznov Lee
 </title>
@@ -139,9 +139,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="C/C++快速入门">
+        <h1 id="C/C++快速入门(一)">
             
-            C/C++快速入门
+            C/C++快速入门(一)
             
         </h1>
         <div class="post-meta">
@@ -176,7 +176,7 @@
     </div>
     
     <div class="post-body post-content">
-        <h1 id="C-C-快速入门"><a href="#C-C-快速入门" class="headerlink" title="C/C++快速入门"></a>C/C++快速入门</h1><h2 id="1-基本数据类型"><a href="#1-基本数据类型" class="headerlink" title="1.基本数据类型"></a>1.基本数据类型</h2><h3 id="1-1-变量的定义"><a href="#1-1-变量的定义" class="headerlink" title="1.1 变量的定义"></a>1.1 变量的定义</h3><p>&ensp;&ensp;&ensp;&ensp;变量是在程序运行过程中其值可以改变的的量，需要在定义后才可以使用，其定义格式为：</p>
+        <h1 id="C-C-快速入门-一"><a href="#C-C-快速入门-一" class="headerlink" title="C/C++快速入门(一)"></a>C/C++快速入门(一)</h1><h2 id="1-基本数据类型"><a href="#1-基本数据类型" class="headerlink" title="1.基本数据类型"></a>1.基本数据类型</h2><h3 id="1-1-变量的定义"><a href="#1-1-变量的定义" class="headerlink" title="1.1 变量的定义"></a>1.1 变量的定义</h3><p>&ensp;&ensp;&ensp;&ensp;变量是在程序运行过程中其值可以改变的的量，需要在定义后才可以使用，其定义格式为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">变量类型 变量名;</span><br></pre></td></tr></table></figure>
 <p>&ensp;&ensp;&ensp;&ensp;并且，变量可以在定义时赋值：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">变量类型 变量名&#x3D;初值;</span><br></pre></td></tr></table></figure>
@@ -259,7 +259,146 @@
 <h4 id="1-2-4-布尔型"><a href="#1-2-4-布尔型" class="headerlink" title="1.2.4 布尔型"></a>1.2.4 布尔型</h4><p>&ensp;&ensp;&ensp;&ensp;布尔型在C++中可以直接使用，但在C语言中必须添加<code>stdbool.h</code>才能使用。bool型变量只能是<code>true</code>或者<code>false</code>，赋值时可直接使用<code>true</code>和<code>false</code>，或者使用整数进行赋值。<b>整数常量在赋值给布尔型变量时会自动转换为<code>true</code>（非零）和<code>false</code>（零）</b>。对于计算机而言，<code>true</code>和<code>false</code>分别表示为<code>1</code>和<code>0</code>，故用%d输出bool型变量时会输出<code>1</code>和<code>0</code>。</p>
 <h3 id="1-3-强制类型转换"><a href="#1-3-强制类型转换" class="headerlink" title="1.3 强制类型转换"></a>1.3 强制类型转换</h3><p>&ensp;&ensp;&ensp;&ensp;强制类型转换格式如下；<br>&ensp;&ensp;&ensp;&ensp;<code>(新类型名)变量名;</code></p>
 <h3 id="1-4-符号常量和const常量"><a href="#1-4-符号常量和const常量" class="headerlink" title="1.4 符号常量和const常量"></a>1.4 符号常量和const常量</h3><p>&ensp;&ensp;&ensp;&ensp;符号常量通常来讲就是”替换”，即用一个标识符来替代常量，又称”宏定义”或者”宏替换”，格式如下：<br>&ensp;&ensp;&ensp;&ensp;<code>#define PI = 3.14</code><br>&ensp;&ensp;&ensp;&ensp;<b>末尾不加分号</b>。<br>&ensp;&ensp;&ensp;&ensp;另一种替换的方法是使用<code>const</code>，其格式如下：<br>&ensp;&ensp;&ensp;&ensp;<code>const double pi = 3.14;</code><br>&ensp;&ensp;&ensp;&ensp;以上两种办法都被称为常量，<b>但推荐const的写法</b>。<br>&ensp;&ensp;&ensp;&ensp;define可以定义任意片段：<br>&ensp;&ensp;&ensp;&ensp;<code>#define 标识符 任何语句或片段</code><br>&ensp;&ensp;&ensp;&ensp;<code>#define ADD(a,b) ((a)+(b))</code><br>&ensp;&ensp;&ensp;&ensp;上述代码表示，定义一个<code>ADD(a,b)</code>来代替a+b。<br>&ensp;&ensp;&ensp;&ensp;通过上述例子不难发现<b>宏定义是直接将对应的部分替换，然后才进行编译和运行</b>。替换时只是单纯的替换不包含优先级。如<code>#define CAL(x) (x * 2 + 1)</code>中，若令<code>x = a + 1</code>，则结果为<code>a + 3</code>，因为计算时<code>x</code>会直接替换为<code>a + 1</code>，则原来的式子变为<code>a + 1 * 2 + 1</code>，但是可以通过括号来确定优先级。</p>
-<h3 id="1-5"><a href="#1-5" class="headerlink" title="1.5"></a>1.5</h3>
+<h3 id="1-5-运算符"><a href="#1-5-运算符" class="headerlink" title="1.5 运算符"></a>1.5 运算符</h3><p>&ensp;&ensp;&ensp;&ensp;常用运算符有<b>算术运算符</b>、<b>关系运算符</b>、<b>逻辑运算符</b>、<b>条件运算符</b>、<b>位运算符</b>等。</p>
+<h4 id="1-5-1-算术运算符"><a href="#1-5-1-算术运算符" class="headerlink" title="1.5.1 算术运算符"></a>1.5.1 算术运算符</h4><p>&ensp;&ensp;&ensp;&ensp;算数运算符有很多，比较常用的如下：</p>
+<ul>
+<li>“+” 加法运算符： <code>a+b</code></li>
+<li>“-“ 减法运算符:  <code>a-b</code></li>
+<li>“*” 乘法运算符:  <code>a*b</code></li>
+<li>“/“ 除法运算符:  <code>a/b</code></li>
+<li>“%” 取模运算符:  <code>a%b</code>得余数</li>
+<li>“++” 自增运算符: <code>a++,++a</code></li>
+<li>“–” 自减运算符: <code>a--,--a</code></li>
+</ul>
+<blockquote>
+<p>其中<code>b=a++</code>是指首先将a赋值给b，再将a累加，实质为<code>b=a,a=a+1</code>；而<code>b=++a</code>是指首先令a累加，再将累加后的值赋给b，实质为<code>b=a+1,a=a+1</code>。</p>
+</blockquote>
+<h4 id="1-5-2-关系运算符"><a href="#1-5-2-关系运算符" class="headerlink" title="1.5.2 关系运算符"></a>1.5.2 关系运算符</h4><p>&ensp;&ensp;&ensp;&ensp;常用关系运算符有：<code>&lt;、&gt;、&lt;=、&gt;=、==、!=</code>。</p>
+<table>
+    <tr>
+        <td>运算符</td>
+        <td>含义</td>
+        <td>语法</td>
+        <td>返回值</td>
+    </tr>
+    <tr>
+        <td><</td>
+        <td>小于</td>
+        <td>a < b</td>
+        <td rowspan="6">表达式成立时返回为真（1，true），<br/>不成立时返回假（0，false）</td>
+    </tr>
+    <tr>
+        <td>></td>
+        <td>大于</td>
+        <td>a > b</td>
+    </tr>
+    <tr>
+        <td><=</td>
+        <td>小于等于</td>
+        <td>a <= b</td>
+    </tr>
+    <tr>
+        <td>>=</td>
+        <td>大于等于</td>
+        <td>a >= b</td>
+    </tr>
+    <tr>
+        <td>==</td>
+        <td>等于</td>
+        <td>a == b</td>
+    </tr>
+    <tr>
+        <td>!=</td>
+        <td>不等于</td>
+        <td>a != b</td>
+    </tr>
+</table>
+
+<h4 id="1-5-3-逻辑运算符"><a href="#1-5-3-逻辑运算符" class="headerlink" title="1.5.3 逻辑运算符"></a>1.5.3 逻辑运算符</h4><p>&ensp;&ensp;&ensp;&ensp;常用的逻辑运算符有<code>&amp;&amp;、||、！</code>，分别对应”与””或””非”。</p>
+<table>
+    <tr>
+        <td>运算符</td>
+        <td>含义</td>
+        <td>语法</td>
+        <td>返回值</td>
+    </tr>
+    <tr>
+        <td>&&</td>
+        <td>与</td>
+        <td>a && b</td>
+        <td>ab都真，则返回真<br/>其他情况均返回假</td>
+    </tr>
+    <tr>
+        <td>||</td>
+        <td>或</td>
+        <td>a||b</td>
+        <td>ab都假，则返回假<br/>其他情况均返回真</td>
+    </tr>
+    <tr>
+        <td>!</td>
+        <td>非</td>
+        <td>!a</td>
+        <td>如果a为真，则返回假<br/>如果a为假，则返回真</td>
+    </tr>
+</table>
+
+<h4 id="1-5-4-条件运算符"><a href="#1-5-4-条件运算符" class="headerlink" title="1.5.4 条件运算符"></a>1.5.4 条件运算符</h4><p>&ensp;&ensp;&ensp;&ensp;条件运算符是C语言中唯一的<b>三目运算符</b>，其格式为：<code>(A?B:C)</code>。其含义为：若条件<code>A</code>为真，则执行并返回<code>B</code>的结果，否则执行并返回<code>C</code>的结果。</p>
+<h4 id="1-5-5-位运算符"><a href="#1-5-5-位运算符" class="headerlink" title="1.5.5 位运算符"></a>1.5.5 位运算符</h4><p>&ensp;&ensp;&ensp;&ensp;位运算符有六种，详见下表。以左移运算符<code>&lt;&lt;</code>为例，由于<code>int</code>型的上限为<img src="http://latex.codecogs.com/gif.latex?2%5E%7B31%7D-1" alt="">)，因此有时程序中<b>无穷大</b>的数INF可以设置成<code>(1&lt;&lt;31)-1</code>，此处<b>必须加括号</b>，因为位运算符的优先级没有算术运算符高。但一般更常用的是<img src="http://latex.codecogs.com/gif.latex?2%5E%7B30%7D-1" alt="">)，因为它可以避免相加超过int的情况。注意<img src="http://latex.codecogs.com/gif.latex?2%5E%7B31%7D-1" alt="">)写成二进制就是<code>0x3fffffff</code>，因此<code>(1&lt;&lt;30)-1</code>与<code>0xfffffff</code>等价。</p>
+<table>
+    <tr>
+        <td>运算符</td>
+        <td>含义</td>
+        <td>语法</td>
+        <td>效果</td>
+    </tr>
+    <tr>
+        <td><<</td>
+        <td>左移</td>
+        <td>a << x</td>
+        <td>整数a按二进制左移x位</td>
+    </tr>
+    <tr>
+        <td>>></td>
+        <td>右移</td>
+        <td>a >> x</td>
+        <td>整数a按二进制右移x位</td>
+    </tr>
+    <tr>
+        <td>&</td>
+        <td>位与</td>
+        <td>a & b</td>
+        <td>整数a和b按二进制对齐，按位进行与运算（除了11得1，其他均为0）</td>
+    </tr>
+    <tr>
+        <td>|</td>
+        <td>位或</td>
+        <td>a | b</td>
+        <td>整数a和b按二进制对齐，按位进行或运算（除了00得0，其他均为1）</td>
+    </tr>
+    <tr>
+        <td>^</td>
+        <td>位异或</td>
+        <td>a ^ b</td>
+        <td>整数a和b按二进制对齐，按位进行异或运算（相同为0，不同为1）</td>
+    </tr>
+    <tr>
+        <td>~</td>
+        <td>位取反</td>
+        <td>~a</td>
+        <td>整数a的二进制的每一位进行0变1、1变0的操作</td>
+    </tr>
+</table>
+
+<p>&ensp;&ensp;&ensp;&ensp;e.g. </p>
+<ul>
+<li><code>1000 &lt;&lt; 3</code> → <code>1</code> </li>
+<li><code>1 &gt;&gt; 3</code> → <code>1000</code></li>
+<li><code>1 &amp; 3</code> → <code>0001 &amp; 0011</code> → <code>0001</code> → <code>1</code></li>
+<li><code>1 | 3</code> → <code>0001 | 0011</code> → <code>0011</code> → <code>3</code></li>
+<li><code>1 ^ 3</code> → <code>0001 ^ 0011</code> → <code>0010</code> → <code>2</code></li>
+<li><code>~1</code> → <code>0001</code> → <code>1110</code> → <code>14</code></li>
+</ul>
+
     </div>
     
     <div class="post-footer">
@@ -300,7 +439,7 @@
             Table of Contents
         </h3>
         
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C-C-快速入门"><span class="toc-text">C&#x2F;C++快速入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-基本数据类型"><span class="toc-text">1.基本数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-变量的定义"><span class="toc-text">1.1 变量的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-变量类型"><span class="toc-text">1.2 变量类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1-整型"><span class="toc-text">1.2.1 整型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2-浮点型"><span class="toc-text">1.2.2 浮点型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3-字符型"><span class="toc-text">1.2.3 字符型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#（1）字符变量和字符常量"><span class="toc-text">（1）字符变量和字符常量</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#（2）转义字符"><span class="toc-text">（2）转义字符</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#（3）字符串常量"><span class="toc-text">（3）字符串常量</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-4-布尔型"><span class="toc-text">1.2.4 布尔型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-强制类型转换"><span class="toc-text">1.3 强制类型转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-符号常量和const常量"><span class="toc-text">1.4 符号常量和const常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5"><span class="toc-text">1.5</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C-C-快速入门-一"><span class="toc-text">C&#x2F;C++快速入门(一)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-基本数据类型"><span class="toc-text">1.基本数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-变量的定义"><span class="toc-text">1.1 变量的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-变量类型"><span class="toc-text">1.2 变量类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1-整型"><span class="toc-text">1.2.1 整型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2-浮点型"><span class="toc-text">1.2.2 浮点型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3-字符型"><span class="toc-text">1.2.3 字符型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#（1）字符变量和字符常量"><span class="toc-text">（1）字符变量和字符常量</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#（2）转义字符"><span class="toc-text">（2）转义字符</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#（3）字符串常量"><span class="toc-text">（3）字符串常量</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-4-布尔型"><span class="toc-text">1.2.4 布尔型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-强制类型转换"><span class="toc-text">1.3 强制类型转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-符号常量和const常量"><span class="toc-text">1.4 符号常量和const常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-运算符"><span class="toc-text">1.5 运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-5-1-算术运算符"><span class="toc-text">1.5.1 算术运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-5-2-关系运算符"><span class="toc-text">1.5.2 关系运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-5-3-逻辑运算符"><span class="toc-text">1.5.3 逻辑运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-5-4-条件运算符"><span class="toc-text">1.5.4 条件运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-5-5-位运算符"><span class="toc-text">1.5.5 位运算符</span></a></li></ol></li></ol></li></ol></li></ol>
         
     </div>
 </aside>
