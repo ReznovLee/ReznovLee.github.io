@@ -19,11 +19,10 @@
     <link rel="dns-prefetch" href="http://yoursite.com">
     <!--SEO-->
 
-<meta name="keywords" content="HTML" />
+<meta name="keywords" content="C/C++" />
 
 
-<meta name="description" content="test
-" />
+<meta name="description" content="C/C++快速入门(二)2.顺序结构2.1 复制表达式&ensp;&ensp;&ensp;&ensp;在C语言中可以使用”=”来实现赋值操作：&ensp;&ensp;&ensp;&ensp;in..." />
 
 
 <meta name="robots" content="all" />
@@ -34,7 +33,7 @@
 
 <title>
     
-    Html |
+    C/C++快速入门(二) |
     
     Reznov Lee
 </title>
@@ -139,16 +138,16 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="Html">
+        <h1 id="C/C++快速入门(二)">
             
-            Html
+            C/C++快速入门(二)
             
         </h1>
         <div class="post-meta">
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <a class="category-link" href="/categories/HTML/">HTML</a>
+        <a class="category-link" href="/categories/CPP/">CPP</a>
     </span>
     
     
@@ -156,7 +155,7 @@
         <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-            <a class="tag-link" href="/tags/HTML/" rel="tag">HTML</a>
+            <a class="tag-link" href="/tags/C-C/" rel="tag">C/C++</a>
             
         </span>
     </span>
@@ -166,7 +165,7 @@
     <span class="fa-wrap">
         <i class="fa fa-clock-o"></i>
         <span class="date-meta">
-            2020/04/08</span>
+            2020/04/09</span>
     </span>
     
     
@@ -176,7 +175,48 @@
     </div>
     
     <div class="post-body post-content">
-        <p>test</p>
+        <h1 id="C-C-快速入门-二"><a href="#C-C-快速入门-二" class="headerlink" title="C/C++快速入门(二)"></a>C/C++快速入门(二)</h1><h2 id="2-顺序结构"><a href="#2-顺序结构" class="headerlink" title="2.顺序结构"></a>2.顺序结构</h2><h3 id="2-1-复制表达式"><a href="#2-1-复制表达式" class="headerlink" title="2.1 复制表达式"></a>2.1 复制表达式</h3><p>&ensp;&ensp;&ensp;&ensp;在C语言中可以使用”=”来实现赋值操作：<br>&ensp;&ensp;&ensp;&ensp;<code>int n = 5;</code><br>&ensp;&ensp;&ensp;&ensp;也可以使用连等：<br>&ensp;&ensp;&ensp;&ensp;<code>int n = m = 6;</code><br>&ensp;&ensp;&ensp;&ensp;另外等号右边也可以为表达式：<br>&ensp;&ensp;&ensp;&ensp;<code>int n = 3 * 1 + 1;</code><br>&ensp;&ensp;&ensp;&ensp;<b>另外，赋值运算符可以通过其他运算符放在前面来实现赋值操作的简化</b>，如：<br>&ensp;&ensp;&ensp;&ensp;<code>n *= 1</code>同<code>n = n + 1</code>，<code>n /= m + 1</code>同<code>n = n / (m + 1)</code>等。</p>
+<h3 id="2-2-使用scanf和printf输入-输出"><a href="#2-2-使用scanf和printf输入-输出" class="headerlink" title="2.2 使用scanf和printf输入/输出"></a>2.2 使用scanf和printf输入/输出</h3><p>&ensp;&ensp;&ensp;&ensp;C语言的<code>stdio.h</code>库函数提供了scanf和printf函数，分别对应输入和输出。</p>
+<h4 id="2-2-1-scanf函数的使用"><a href="#2-2-1-scanf函数的使用" class="headerlink" title="2.2.1 scanf函数的使用"></a>2.2.1 scanf函数的使用</h4><p>&ensp;&ensp;&ensp;&ensp;scanf是输入函数，格式为：<br>&ensp;&ensp;&ensp;&ensp;<code>scanf(&quot;格式控制&quot;, 变量地址);</code>，即<code>scanf(&quot;%d&quot;, &amp;n);</code>。<br>&ensp;&ensp;&ensp;&ensp;其中<code>&amp;</code>表示<b>取地址符</b>。常见数据类型变量的scanf格式符</p>
+<table>
+    <tr>
+        <td>数据类型</td>
+        <td>格式符</td>
+        <td>举例</td>
+    </tr>
+    <tr>
+        <td>int</td>
+        <td>%d</td>
+        <td>scanf("%d", &n)</td>
+    </tr>
+    <tr>
+        <td>long long</td>
+        <td>%lld</td>
+        <td>scanf("%lld", &n)</td>
+    </tr>
+    <tr>
+        <td>float</td>
+        <td>%f</td>
+        <td>scanf("%f", &fl)</td>
+    </tr>
+    <tr>
+        <td>double</td>
+        <td>%lf</td>
+        <td>scanf("%lf", &db)</td>
+    </tr>
+    <tr>
+        <td>char</td>
+        <td>%c</td>
+        <td>scanf("%c", &c)</td>
+    </tr>
+    <tr>
+        <td>字符串（char数组）</td>
+        <td>%s</td>
+        <td>scanf("%s", str)</td>
+    </tr>
+</table>
+
+<p>&ensp;&ensp;&ensp;&ensp;注意到上表中字符数组不需要取地址，这是因为<b>数组名称本来就代表了这个数组的第一个元素的地址，所以不需要再加取地址符</b>，<b>在scanf中，除了char数组整个输入的情况不加&amp;之外，其他变量类型都需要加&amp;</b>。<br>&ensp;&ensp;&ensp;&ensp;scanf的双引号内的内容其实就是整个输入，只不过把数据转换成他们对应的格式符并把变量的地址按次序写在后面。如<code>scanf(&quot;The number are: %d, %d, %d&quot;, &amp;m, &amp;n, &amp;o)</code>。<b>除了%c外，</b></p>
 
     </div>
     
@@ -195,17 +235,17 @@
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/2020/04/09/C++%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8(%E4%BA%8C)/" class="pre-post btn btn-default" title='C/C++快速入门(二)'>
+    <a href="/2020/04/11/NXSecondary/" class="pre-post btn btn-default" title='NXSecondary'>
         <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
         <span class="hidden-xs">
-            C/C++快速入门(二)</span>
+            NXSecondary</span>
     </a>
     
     
-    <a href="/2020/04/08/Java/" class="next-post btn btn-default" title='Java'>
+    <a href="/2020/04/08/Html/" class="next-post btn btn-default" title='Html'>
         <span class="hidden-lg">下一篇</span>
         <span class="hidden-xs">
-            Java</span><i class="fa fa-angle-right fa-fw"></i>
+            Html</span><i class="fa fa-angle-right fa-fw"></i>
     </a>
     
 </div>
@@ -224,7 +264,7 @@
             Table of Contents
         </h3>
         
-        <p>暂无目录</p>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C-C-快速入门-二"><span class="toc-text">C&#x2F;C++快速入门(二)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-顺序结构"><span class="toc-text">2.顺序结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-复制表达式"><span class="toc-text">2.1 复制表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-使用scanf和printf输入-输出"><span class="toc-text">2.2 使用scanf和printf输入&#x2F;输出</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-1-scanf函数的使用"><span class="toc-text">2.2.1 scanf函数的使用</span></a></li></ol></li></ol></li></ol></li></ol>
         
     </div>
 </aside>
