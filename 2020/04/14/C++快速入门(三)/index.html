@@ -28,7 +28,7 @@
 <meta property="og:description" content="C&#x2F;C++快速入门(三)3.选择结构3.1 if语句&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;if语句根据某个条件判断是否为真来决定执行哪个语句，格式如下： 123if(条件A) &amp;#123;    ...&amp;#125;">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-14T02:02:05.000Z">
-<meta property="article:modified_time" content="2020-04-14T04:57:23.184Z">
+<meta property="article:modified_time" content="2020-04-14T08:41:51.835Z">
 <meta property="article:author" content="Reznov Lee">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta name="twitter:card" content="summary">
@@ -185,7 +185,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-04-14 10:02:05 / Modified: 12:57:23" itemprop="dateCreated datePublished" datetime="2020-04-14T10:02:05+08:00">2020-04-14</time>
+              <time title="Created: 2020-04-14 10:02:05 / Modified: 16:41:51" itemprop="dateCreated datePublished" datetime="2020-04-14T10:02:05+08:00">2020-04-14</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -249,6 +249,19 @@
 <p>&ensp;&ensp;&ensp;&ensp;输出结果：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum &#x3D; 6</span><br></pre></td></tr></table></figure>
 <p>&ensp;&ensp;&ensp;&ensp;过程罗列如下：<br>&ensp;&ensp;&ensp;&ensp;1.<code>i==1:i%2==1</code>，因此<code>continue</code>执行，跳出for循环当前轮回，<code>i++</code>后进入下层循环；<br>&ensp;&ensp;&ensp;&ensp;2.<code>i==2:i%2==0</code>，因此<code>continue</code>不执行，<code>sum = sum + i</code>得<code>sum == 2</code>，<code>i++</code>后进入下层循环；<br>&ensp;&ensp;&ensp;&ensp;3.<code>i==3:i%2==1</code>，因此<code>continue</code>执行，跳出for循环当前轮回，<code>i++</code>后进入下层循环；<br>&ensp;&ensp;&ensp;&ensp;4.<code>i==4:i%2==0</code>，因此<code>continue</code>不执行，<code>sum = sum + i</code>得<code>sum == 6</code>，<code>i++</code>后进入下层循环；<br>&ensp;&ensp;&ensp;&ensp;5.<code>i==5:i%2==1</code>，因此<code>continue</code>执行，跳出for循环当前轮回，<code>i++</code>后进入下层循环；<br>&ensp;&ensp;&ensp;&ensp;6.<code>i==6</code>，不满足<code>i&lt;=5</code>的条件，故退出for循环。</p>
+<h2 id="5-数组"><a href="#5-数组" class="headerlink" title="5.数组"></a>5.数组</h2><h3 id="5-1-一维数组"><a href="#5-1-一维数组" class="headerlink" title="5.1 一维数组"></a>5.1 一维数组</h3><p>&ensp;&ensp;&ensp;&ensp;数组就是把相同数据类型的变量组合在一起而产生的数据集合。数组就是从某个地址开始连续若干个位置形成的元素集合，定义格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数据类型 数组名[数组大小]；</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;<b>数组大小必须是整数常量，不可以是变量</b>。数组数据通过下述格式访问：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数组名称[下标]</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;在定义了长度的一维数组后，<b>只能访问下标为0~size-1的元素。</b>接下来需要进行一维数组初始化，一维数组的初始化，需要给出用逗号隔开的<b>从第一个元素开始的</b>若干个元素的初值，并用大括号括住。后面未被赋值的元素会由编译器内部赋不同的初值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int a[10] &#x3D; &#123;5,3,4,6,7&#125;;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;数组a的初值中，前5位为<code>5,3,4,6,7</code>，后五位为编译器赋给的初值（一般情况默认是0）。<br><b>若数组创建后并没有赋值，则所有元素均为随机数而不一定是0</b>。若想整个数组初值为0，则只需要把第一个元素赋为0，或者只用一个大括号表示（此处更推荐使用memset函数）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int a[10] &#x3D; &#123;0&#125;;</span><br><span class="line">int b[10] &#x3D; &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>数组中的每一个元素都可以作为一个单独的变量进行赋值。如果根据某种规则可以让数组的后一位结果由前一位推算出来，则这种方法叫做<b>递推</b>。递推分为<b>顺推</b>和<b>逆推</b>。</p>
+</blockquote>
+<h3 id="5-2-冒泡排序"><a href="#5-2-冒泡排序" class="headerlink" title="5.2 冒泡排序"></a>5.2 冒泡排序</h3><p>(…)</p>
 
     </div>
 
@@ -329,7 +342,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C-C-快速入门-三"><span class="nav-number">1.</span> <span class="nav-text">C&#x2F;C++快速入门(三)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-选择结构"><span class="nav-number">1.1.</span> <span class="nav-text">3.选择结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-if语句"><span class="nav-number">1.1.1.</span> <span class="nav-text">3.1 if语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-if语句的嵌套"><span class="nav-number">1.1.2.</span> <span class="nav-text">3.2 if语句的嵌套</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-switch语句"><span class="nav-number">1.1.3.</span> <span class="nav-text">3.3 switch语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-循环结构"><span class="nav-number">1.2.</span> <span class="nav-text">4.循环结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-while语句"><span class="nav-number">1.2.1.</span> <span class="nav-text">4.1 while语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-do…while语句"><span class="nav-number">1.2.2.</span> <span class="nav-text">4.2 do…while语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-for循环"><span class="nav-number">1.2.3.</span> <span class="nav-text">4.3 for循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-break和continue"><span class="nav-number">1.2.4.</span> <span class="nav-text">4.4 break和continue</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C-C-快速入门-三"><span class="nav-number">1.</span> <span class="nav-text">C&#x2F;C++快速入门(三)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-选择结构"><span class="nav-number">1.1.</span> <span class="nav-text">3.选择结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-if语句"><span class="nav-number">1.1.1.</span> <span class="nav-text">3.1 if语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-if语句的嵌套"><span class="nav-number">1.1.2.</span> <span class="nav-text">3.2 if语句的嵌套</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-switch语句"><span class="nav-number">1.1.3.</span> <span class="nav-text">3.3 switch语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-循环结构"><span class="nav-number">1.2.</span> <span class="nav-text">4.循环结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-while语句"><span class="nav-number">1.2.1.</span> <span class="nav-text">4.1 while语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-do…while语句"><span class="nav-number">1.2.2.</span> <span class="nav-text">4.2 do…while语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-for循环"><span class="nav-number">1.2.3.</span> <span class="nav-text">4.3 for循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-break和continue"><span class="nav-number">1.2.4.</span> <span class="nav-text">4.4 break和continue</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-数组"><span class="nav-number">1.3.</span> <span class="nav-text">5.数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-一维数组"><span class="nav-number">1.3.1.</span> <span class="nav-text">5.1 一维数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-冒泡排序"><span class="nav-number">1.3.2.</span> <span class="nav-text">5.2 冒泡排序</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
