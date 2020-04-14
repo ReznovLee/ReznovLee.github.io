@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="C&#x2F;C++快速入门(三)3.选择结构3.1 if语句&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;if语句根据某个条件判断是否为真来决定执行哪个语句，格式如下： 123if(条件A) &amp;#123;    ...&amp;#125;">
+  <meta name="description" content="3.选择结构">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C&#x2F;C++快速入门(三)">
 <meta property="og:url" content="http://yoursite.com/2020/04/14/C++%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8(%E4%B8%89)/index.html">
 <meta property="og:site_name" content="Reznov Lee">
-<meta property="og:description" content="C&#x2F;C++快速入门(三)3.选择结构3.1 if语句&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;if语句根据某个条件判断是否为真来决定执行哪个语句，格式如下： 123if(条件A) &amp;#123;    ...&amp;#125;">
+<meta property="og:description" content="3.选择结构">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-14T02:02:05.000Z">
-<meta property="article:modified_time" content="2020-04-14T08:41:51.835Z">
+<meta property="article:modified_time" content="2020-04-14T09:37:02.567Z">
 <meta property="article:author" content="Reznov Lee">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta name="twitter:card" content="summary">
@@ -185,7 +185,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-04-14 10:02:05 / Modified: 16:41:51" itemprop="dateCreated datePublished" datetime="2020-04-14T10:02:05+08:00">2020-04-14</time>
+              <time title="Created: 2020-04-14 10:02:05 / Modified: 17:37:02" itemprop="dateCreated datePublished" datetime="2020-04-14T10:02:05+08:00">2020-04-14</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -208,10 +208,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="C-C-快速入门-三"><a href="#C-C-快速入门-三" class="headerlink" title="C/C++快速入门(三)"></a>C/C++快速入门(三)</h1><h2 id="3-选择结构"><a href="#3-选择结构" class="headerlink" title="3.选择结构"></a>3.选择结构</h2><h3 id="3-1-if语句"><a href="#3-1-if语句" class="headerlink" title="3.1 if语句"></a>3.1 if语句</h3><p>&ensp;&ensp;&ensp;&ensp;<code>if</code>语句根据某个条件判断是否为真来决定执行哪个语句，格式如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if(条件A) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="3-选择结构"><a href="#3-选择结构" class="headerlink" title="3.选择结构"></a>3.选择结构</h1><a id="more"></a>
 
-<a id="more"></a>
+<h2 id="3-1-if语句"><a href="#3-1-if语句" class="headerlink" title="3.1 if语句"></a>3.1 if语句</h2><p>&ensp;&ensp;&ensp;&ensp;<code>if</code>语句根据某个条件判断是否为真来决定执行哪个语句，格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if(条件A) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>&ensp;&ensp;&ensp;&ensp;即若条件A为真，则执行代码块的内容；否则跳过。同时若不满足条件A但也可以附加执行代码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if(条件A) &#123;</span><br><span class="line">    ...1</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    ...2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -221,25 +221,25 @@
 <blockquote>
 <p>小技巧，在if条件中，如果表达式是<code>!=0</code>或<code>==0</code>，那么可以采用比较简单的写法：<br>(1)如果表达式是<code>!=0</code>则可以省略；<br>(2)如果表达式为<code>==0</code>则可以省略<code>==0</code>并在表达式前加非运算符<code>!</code>。</p>
 </blockquote>
-<h3 id="3-2-if语句的嵌套"><a href="#3-2-if语句的嵌套" class="headerlink" title="3.2 if语句的嵌套"></a>3.2 if语句的嵌套</h3><p>&ensp;&ensp;&ensp;&ensp;if语句的嵌套是指在if或者else代码块中嵌套if语句，示例如下：</p>
+<h2 id="3-2-if语句的嵌套"><a href="#3-2-if语句的嵌套" class="headerlink" title="3.2 if语句的嵌套"></a>3.2 if语句的嵌套</h2><p>&ensp;&ensp;&ensp;&ensp;if语句的嵌套是指在if或者else代码块中嵌套if语句，示例如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">if(条件A) &#123;</span><br><span class="line">    ...1</span><br><span class="line">    if(条件B) &#123;</span><br><span class="line">        ...2</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        ...3</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    ...4</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>&ensp;&ensp;&ensp;&ensp;上述代码中，若条件A为真，则执行代码块1，若在代码块1中出现if语句，判断条件B，若为真则执行代码块2，否则执行代码块3；若条件A为假，则执行代码块4。</p>
-<h3 id="3-3-switch语句"><a href="#3-3-switch语句" class="headerlink" title="3.3 switch语句"></a>3.3 switch语句</h3><p>&ensp;&ensp;&ensp;&ensp;switch用于分支条件较多的情况，示例如下：</p>
+<h2 id="3-3-switch语句"><a href="#3-3-switch语句" class="headerlink" title="3.3 switch语句"></a>3.3 switch语句</h2><p>&ensp;&ensp;&ensp;&ensp;switch用于分支条件较多的情况，示例如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">switch(表达式) &#123;</span><br><span class="line">    case 常量表达式1：</span><br><span class="line">        ...</span><br><span class="line">        break;</span><br><span class="line">    case 常量表达式2：</span><br><span class="line">        ...</span><br><span class="line">        break;</span><br><span class="line">    case 常量表达式3：</span><br><span class="line">        ...</span><br><span class="line">        break;</span><br><span class="line">    case 常量表达式n：</span><br><span class="line">        ...</span><br><span class="line">        break;</span><br><span class="line">    default:</span><br><span class="line">        ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>&ensp;&ensp;&ensp;&ensp;break的作用是，当当前case满足时，则直接跳出当前switch语句。</p>
-<h2 id="4-循环结构"><a href="#4-循环结构" class="headerlink" title="4.循环结构"></a>4.循环结构</h2><h3 id="4-1-while语句"><a href="#4-1-while语句" class="headerlink" title="4.1 while语句"></a>4.1 while语句</h3><p>&ensp;&ensp;&ensp;&ensp;while循环示例如下：</p>
+<h1 id="4-循环结构"><a href="#4-循环结构" class="headerlink" title="4.循环结构"></a>4.循环结构</h1><h2 id="4-1-while语句"><a href="#4-1-while语句" class="headerlink" title="4.1 while语句"></a>4.1 while语句</h2><p>&ensp;&ensp;&ensp;&ensp;while循环示例如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">while(条件A) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>&ensp;&ensp;&ensp;&ensp;while的含义是，若条件A成立，则反复执行代码块内容。</p>
-<h3 id="4-2-do…while语句"><a href="#4-2-do…while语句" class="headerlink" title="4.2 do…while语句"></a>4.2 do…while语句</h3><p>&ensp;&ensp;&ensp;&ensp;do…while与while语句相似，但是格式上下颠倒：</p>
+<h2 id="4-2-do…while语句"><a href="#4-2-do…while语句" class="headerlink" title="4.2 do…while语句"></a>4.2 do…while语句</h2><p>&ensp;&ensp;&ensp;&ensp;do…while与while语句相似，但是格式上下颠倒：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">do &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;while(条件A);</span><br></pre></td></tr></table></figure>
 <p>&ensp;&ensp;&ensp;&ensp;do…while会先执行一次代码块的内容，然后再进行判断条件A是否为真，为真则反复执行代码块内容；若为假则跳出循环。</p>
-<h3 id="4-3-for循环"><a href="#4-3-for循环" class="headerlink" title="4.3 for循环"></a>4.3 for循环</h3><p>&ensp;&ensp;&ensp;&ensp;for循环示例如下：</p>
+<h2 id="4-3-for循环"><a href="#4-3-for循环" class="headerlink" title="4.3 for循环"></a>4.3 for循环</h2><p>&ensp;&ensp;&ensp;&ensp;for循环示例如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for(表达式1;表达式2;表达式3) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>&ensp;&ensp;&ensp;&ensp;for循环格式的意思分为三部分：<br>&ensp;&ensp;&ensp;&ensp;1.在for循环开始前，首先执行表达式A；<br>&ensp;&ensp;&ensp;&ensp;2.判断表达式B是否成立；若成立则执行代码块内容，否则退出循环；<br>&ensp;&ensp;&ensp;&ensp;3.在代码块内容执行完毕后，执行表达式C，之后回到第2步。</p>
 <blockquote>
 <p>特别提醒，在C语言中，表达式1是不允许定义变量的，但是C++可以，若要在表达式1中定义变量，则需要保存为<code>*.cpp</code>进行编译。</p>
 </blockquote>
-<h3 id="4-4-break和continue"><a href="#4-4-break和continue" class="headerlink" title="4.4 break和continue"></a>4.4 break和continue</h3><p>&ensp;&ensp;&ensp;&ensp;break可以在循环的恰当时候跳出循环，实例如下：</p>
+<h2 id="4-4-break和continue"><a href="#4-4-break和continue" class="headerlink" title="4.4 break和continue"></a>4.4 break和continue</h2><p>&ensp;&ensp;&ensp;&ensp;break可以在循环的恰当时候跳出循环，实例如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main() &#123;</span><br><span class="line">    int n, sum &#x3D; 0;</span><br><span class="line">    for(int i &#x3D; 1; i &lt;&#x3D; 100; i++) &#123;</span><br><span class="line">        sum &#x3D; sum + i;</span><br><span class="line">        if(sum &gt;&#x3D; 2000) break;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;sum &#x3D; %d&quot;, sum);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>&ensp;&ensp;&ensp;&ensp;输出结果：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum &#x3D; 2016</span><br></pre></td></tr></table></figure>
@@ -249,7 +249,7 @@
 <p>&ensp;&ensp;&ensp;&ensp;输出结果：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum &#x3D; 6</span><br></pre></td></tr></table></figure>
 <p>&ensp;&ensp;&ensp;&ensp;过程罗列如下：<br>&ensp;&ensp;&ensp;&ensp;1.<code>i==1:i%2==1</code>，因此<code>continue</code>执行，跳出for循环当前轮回，<code>i++</code>后进入下层循环；<br>&ensp;&ensp;&ensp;&ensp;2.<code>i==2:i%2==0</code>，因此<code>continue</code>不执行，<code>sum = sum + i</code>得<code>sum == 2</code>，<code>i++</code>后进入下层循环；<br>&ensp;&ensp;&ensp;&ensp;3.<code>i==3:i%2==1</code>，因此<code>continue</code>执行，跳出for循环当前轮回，<code>i++</code>后进入下层循环；<br>&ensp;&ensp;&ensp;&ensp;4.<code>i==4:i%2==0</code>，因此<code>continue</code>不执行，<code>sum = sum + i</code>得<code>sum == 6</code>，<code>i++</code>后进入下层循环；<br>&ensp;&ensp;&ensp;&ensp;5.<code>i==5:i%2==1</code>，因此<code>continue</code>执行，跳出for循环当前轮回，<code>i++</code>后进入下层循环；<br>&ensp;&ensp;&ensp;&ensp;6.<code>i==6</code>，不满足<code>i&lt;=5</code>的条件，故退出for循环。</p>
-<h2 id="5-数组"><a href="#5-数组" class="headerlink" title="5.数组"></a>5.数组</h2><h3 id="5-1-一维数组"><a href="#5-1-一维数组" class="headerlink" title="5.1 一维数组"></a>5.1 一维数组</h3><p>&ensp;&ensp;&ensp;&ensp;数组就是把相同数据类型的变量组合在一起而产生的数据集合。数组就是从某个地址开始连续若干个位置形成的元素集合，定义格式如下：</p>
+<h1 id="5-数组"><a href="#5-数组" class="headerlink" title="5.数组"></a>5.数组</h1><h2 id="5-1-一维数组"><a href="#5-1-一维数组" class="headerlink" title="5.1 一维数组"></a>5.1 一维数组</h2><p>&ensp;&ensp;&ensp;&ensp;数组就是把相同数据类型的变量组合在一起而产生的数据集合。数组就是从某个地址开始连续若干个位置形成的元素集合，定义格式如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数据类型 数组名[数组大小]；</span><br></pre></td></tr></table></figure>
 <p>&ensp;&ensp;&ensp;&ensp;<b>数组大小必须是整数常量，不可以是变量</b>。数组数据通过下述格式访问：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数组名称[下标]</span><br></pre></td></tr></table></figure>
@@ -261,7 +261,7 @@
 <blockquote>
 <p>数组中的每一个元素都可以作为一个单独的变量进行赋值。如果根据某种规则可以让数组的后一位结果由前一位推算出来，则这种方法叫做<b>递推</b>。递推分为<b>顺推</b>和<b>逆推</b>。</p>
 </blockquote>
-<h3 id="5-2-冒泡排序"><a href="#5-2-冒泡排序" class="headerlink" title="5.2 冒泡排序"></a>5.2 冒泡排序</h3><p>(…)</p>
+<h2 id="5-2-冒泡排序"><a href="#5-2-冒泡排序" class="headerlink" title="5.2 冒泡排序"></a>5.2 冒泡排序</h2><p>(…)</p>
 
     </div>
 
@@ -342,7 +342,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C-C-快速入门-三"><span class="nav-number">1.</span> <span class="nav-text">C&#x2F;C++快速入门(三)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-选择结构"><span class="nav-number">1.1.</span> <span class="nav-text">3.选择结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-if语句"><span class="nav-number">1.1.1.</span> <span class="nav-text">3.1 if语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-if语句的嵌套"><span class="nav-number">1.1.2.</span> <span class="nav-text">3.2 if语句的嵌套</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-switch语句"><span class="nav-number">1.1.3.</span> <span class="nav-text">3.3 switch语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-循环结构"><span class="nav-number">1.2.</span> <span class="nav-text">4.循环结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-while语句"><span class="nav-number">1.2.1.</span> <span class="nav-text">4.1 while语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-do…while语句"><span class="nav-number">1.2.2.</span> <span class="nav-text">4.2 do…while语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-for循环"><span class="nav-number">1.2.3.</span> <span class="nav-text">4.3 for循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-break和continue"><span class="nav-number">1.2.4.</span> <span class="nav-text">4.4 break和continue</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-数组"><span class="nav-number">1.3.</span> <span class="nav-text">5.数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-一维数组"><span class="nav-number">1.3.1.</span> <span class="nav-text">5.1 一维数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-冒泡排序"><span class="nav-number">1.3.2.</span> <span class="nav-text">5.2 冒泡排序</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#3-选择结构"><span class="nav-number">1.</span> <span class="nav-text">3.选择结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-if语句"><span class="nav-number">1.1.</span> <span class="nav-text">3.1 if语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-if语句的嵌套"><span class="nav-number">1.2.</span> <span class="nav-text">3.2 if语句的嵌套</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-switch语句"><span class="nav-number">1.3.</span> <span class="nav-text">3.3 switch语句</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-循环结构"><span class="nav-number">2.</span> <span class="nav-text">4.循环结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-while语句"><span class="nav-number">2.1.</span> <span class="nav-text">4.1 while语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-do…while语句"><span class="nav-number">2.2.</span> <span class="nav-text">4.2 do…while语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-for循环"><span class="nav-number">2.3.</span> <span class="nav-text">4.3 for循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-break和continue"><span class="nav-number">2.4.</span> <span class="nav-text">4.4 break和continue</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-数组"><span class="nav-number">3.</span> <span class="nav-text">5.数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-一维数组"><span class="nav-number">3.1.</span> <span class="nav-text">5.1 一维数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-冒泡排序"><span class="nav-number">3.2.</span> <span class="nav-text">5.2 冒泡排序</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -356,20 +356,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
