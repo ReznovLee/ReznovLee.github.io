@@ -27,11 +27,13 @@
 <meta property="og:site_name" content="Reznov Lee">
 <meta property="og:description" content="3.选择结构">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://latex.codecogs.com/gif.latex?10%5E6">
 <meta property="article:published_time" content="2020-04-14T02:02:05.000Z">
-<meta property="article:modified_time" content="2020-04-14T09:37:02.567Z">
+<meta property="article:modified_time" content="2020-04-15T09:53:14.611Z">
 <meta property="article:author" content="Reznov Lee">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://latex.codecogs.com/gif.latex?10%5E6">
 
 <link rel="canonical" href="http://yoursite.com/2020/04/14/C++%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8(%E4%B8%89)/">
 
@@ -183,10 +185,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-04-14 10:02:05 / Modified: 17:37:02" itemprop="dateCreated datePublished" datetime="2020-04-14T10:02:05+08:00">2020-04-14</time>
+              <time title="Created: 2020-04-14 10:02:05" itemprop="dateCreated datePublished" datetime="2020-04-14T10:02:05+08:00">2020-04-14</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-15 17:53:14" itemprop="dateModified" datetime="2020-04-15T17:53:14+08:00">2020-04-15</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -261,7 +269,105 @@
 <blockquote>
 <p>数组中的每一个元素都可以作为一个单独的变量进行赋值。如果根据某种规则可以让数组的后一位结果由前一位推算出来，则这种方法叫做<b>递推</b>。递推分为<b>顺推</b>和<b>逆推</b>。</p>
 </blockquote>
-<h2 id="5-2-冒泡排序"><a href="#5-2-冒泡排序" class="headerlink" title="5.2 冒泡排序"></a>5.2 冒泡排序</h2><p>(…)</p>
+<h2 id="5-2-冒泡排序"><a href="#5-2-冒泡排序" class="headerlink" title="5.2 冒泡排序"></a>5.2 冒泡排序</h2><p>&ensp;&ensp;&ensp;&ensp;<b>排序</b>是指将一个无序序列按某个规则进行有序排列。冒泡排序的本质是<b>交换</b>，即每次通过将当前剩余元素的最大值移到一端，而当剩余元素减少为0时，排序结束。<br>&ensp;&ensp;&ensp;&ensp;现在有一个数组a，其中有五个元素分别为：<code>a[0]=3, a[1]=4, a[2]=1, a[3]=5, a[4]=2</code>，要求把他们从小到大的顺序排列，下面的过程中每趟将最大的数交换至最右边：<br>&ensp;&ensp;&ensp;&ensp;1.第一趟<br>&ensp;&ensp;&ensp;&ensp;<code>a[0]</code>与<code>a[1]</code>进行比较（3与4比较），<code>a[1]</code>大，因此不动，此时序列为<code>{3, 4, 1, 5, 2}</code>；<br><center><u>3 4</u> 1 5 2</center><br>&ensp;&ensp;&ensp;&ensp;<code>a[1]</code>与<code>a[2]</code>进行比较（4与1比较），<code>a[1]</code>大，因此把<code>a[1]</code>与<code>a[2]</code>交换，此时序列为<code>{3, 1, 4, 5, 2}</code>；<br><center>3 <u>1 4</u> 5 2</center><br>&ensp;&ensp;&ensp;&ensp;<code>a[2]</code>与<code>a[3]</code>进行比较（4与5比较），<code>a[3]</code>大，因此不动，此时序列为<code>{3, 1, 4, 5, 2}</code>；<br><center>3 1 <u>4 5</u> 2</center><br>&ensp;&ensp;&ensp;&ensp;<code>a[3]</code>与<code>a[4]</code>进行比较（5与2比较），<code>a[3]</code>大，因此把<code>a[3]</code>与<code>a[4]</code>交换，此时序列为<code>{3, 1, 4, 2, 5}</code>；<br><center>3 <u>1 4</u> 5 2</center><br>&ensp;&ensp;&ensp;&ensp;此时第一趟排序结束，共进行了四次比较。<br>&ensp;&ensp;&ensp;&ensp;2.第二趟<br>&ensp;&ensp;&ensp;&ensp;<code>a[0]</code>与<code>a[1]</code>进行比较（3与1比较），<code>a[0]</code>大，因此把<code>a[0]</code>与<code>a[1]</code>交换，此时序列为<code>{1, 3, 4, 2, 5}</code>；<br><center><u>1 3</u> 4 2 <s>5</s></center><br>&ensp;&ensp;&ensp;&ensp;<code>a[1]</code>与<code>a[2]</code>进行比较（3与4比较），<code>a[2]</code>大，因此不动，此时序列为<code>{1, 3, 4, 2, 5}</code>；<br><center>1 <u>3 4</u> 2 <s>5</s></center><br>&ensp;&ensp;&ensp;&ensp;<code>a[2]</code>与<code>a[3]</code>进行比较（4与2比较），<code>a[2]</code>大，因此把<code>a[2]</code>与<code>a[3]</code>交换，此时序列为<code>{1, 3, 2, 4, 5}</code>；<br><center>1 3 <u>2 4</u> <s>5</s></center><br>&ensp;&ensp;&ensp;&ensp;由此第二趟排序结束，共进行了三次比较。<br>&ensp;&ensp;&ensp;&ensp;3.第三趟<br>&ensp;&ensp;&ensp;&ensp;<code>a[0]</code>与<code>a[1]</code>进行比较（1与3比较），<code>a[1]</code>大，因此不动，此时序列为<code>{1, 3, 2, 4, 5}</code>；<br><center><u>1 3</u> 2 <s>4 5</s></center><br>&ensp;&ensp;&ensp;&ensp;<code>a[1]</code>与<code>a[2]</code>进行比较（3与2比较），<code>a[1]</code>大，因此把<code>a[1]</code>与<code>a[2]</code>交换，此时序列为<code>{1, 2, 3, 4, 5}</code>；<br><center>1 <u>2 3</u> <s>4 5</s></center><br>&ensp;&ensp;&ensp;&ensp;由此第三趟排序结束，共进行了两次比较。<br>&ensp;&ensp;&ensp;&ensp;4.第四趟<br>&ensp;&ensp;&ensp;&ensp;<code>a[0]</code>与<code>a[1]</code>进行比较（1与2比较），<code>a[1]</code>大，因此不动，此时序列为<code>{1, 2, 3, 4, 5}</code>；<br><center><u>1 2</u> <s>3 4 5</s></center><br>&ensp;&ensp;&ensp;&ensp;由此第四趟排序结束，共进行了一次比较。<br>&ensp;&ensp;&ensp;&ensp;至此，已经无法继续比较了，排序完成。，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main() &#123;</span><br><span class="line">    int a[10] &#x3D; &#123;3, 4, 1, 5, 2&#125;;</span><br><span class="line">    for(int i &#x3D; 0; i &lt;&#x3D; 3; i++) &#123;</span><br><span class="line">        for(int j &#x3D; 0; j &lt;&#x3D; 3 - i; j++) &#123;</span><br><span class="line">            if(a[j] &gt; a[j + 1]) &#123;</span><br><span class="line">                int temp &#x3D; a[j];</span><br><span class="line">                a[j] &#x3D; a[j + 1];</span><br><span class="line">                a[j + 1] &#x3D; temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    for(int i &#x3D; 0; i &lt; 5; i++) &#123;</span><br><span class="line">        printf(&quot;%d&quot;, a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;第二个for循环的理解：第一趟从<code>a[0]</code>到<code>a[3]</code>都需要与下一个数进行比较，第一趟从<code>a[0]</code>到<code>a[2]</code>都需要与下一个数进行比较，第一趟从<code>a[0]</code>到<code>a[1]</code>都需要与下一个数进行比较，第一趟只有<code>a[0]</code>需要与下一个数进行比较。因此能找到规律，即<b>当第i趟时，从<code>a[0]</code>到<code>a[n-1-i]</code>都需要与下一个数比较</b>。</p>
+<blockquote>
+<p>实际上若有<code>n</code>个数进行比较，冒泡排序总共进行<code>n-1</code>趟，第<code>k</code>趟（比较次数从0计数）需要进行<code>n-1-k</code>次比较。</p>
+</blockquote>
+<h2 id="5-3-二维数组"><a href="#5-3-二维数组" class="headerlink" title="5.3 二维数组"></a>5.3 二维数组</h2><p>&ensp;&ensp;&ensp;&ensp;二维数组是一维数组的扩展，其格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数据类型 数组名[第一维大小][第二维大小];</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;二维数组和一维数组的访问类似：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数组名[下标1][下标2]</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;二维数组的初始化需要按照第一维的顺序依次用大括号给出第二维的情况，然后用逗号隔开，并用大括号全部括住，格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int a[5][5] &#x3D; &#123;&#123;3, 1, 2&#125;, &#123;8, 4&#125;, &#123;&#125;, &#123;1, 2, 3, 4, 5&#125;&#125;;</span><br><span class="line"></span><br><span class="line">3 2 1 0 0 0</span><br><span class="line">8 4 0 0 0 0</span><br><span class="line">0 0 0 0 0 0</span><br><span class="line">1 2 3 4 5 0</span><br><span class="line">0 0 0 0 0 0</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;需要注意的是，在初始化时，后面未赋值的默认为0，但中间有元素为0的情况必须输入一个<code>{}</code>进行初始化，否则无法通过编译。</p>
+<blockquote>
+<p>如果数组大小较大（大概<img src="http://latex.codecogs.com/gif.latex?10%5E6" alt>级别），则需要将数组定义在主函数外，否则会使程序异常退出，原因是<code>函数内部申请的局部变量来自系统栈，允许空间较小；而函数外部申请的全局变量来自静态储存区，允许申请的空间较大。</code></p>
+</blockquote>
+<h2 id="5-4-memset——对数组中每个元素赋相同的值"><a href="#5-4-memset——对数组中每个元素赋相同的值" class="headerlink" title="5.4 memset——对数组中每个元素赋相同的值"></a>5.4 memset——对数组中每个元素赋相同的值</h2><p>&ensp;&ensp;&ensp;&ensp;memset用于将数组中每个元素赋予相同的值，有两种方法，fill函数和memset函数。memset函数需要添加<code>string.h</code>头文件，其格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">memset(数组名, 值, sizeof(数组名));</span><br><span class="line">memset(a, 0, sizeof(a));</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;需要注意的是，memset是按照字节赋值，由于0的二进制补码为全0，-1的二进制补码为全1，所以使用时只建议初始化0和-1，其余赋值建议使用fill函数。</p>
+<h2 id="5-5-字符数组"><a href="#5-5-字符数组" class="headerlink" title="5.5 字符数组"></a>5.5 字符数组</h2><h3 id="5-5-1-字符数组的初始化"><a href="#5-5-1-字符数组的初始化" class="headerlink" title="5.5.1 字符数组的初始化"></a>5.5.1 字符数组的初始化</h3><p>&ensp;&ensp;&ensp;&ensp;和普通数组一样，可以使用常规方法初始化：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">char str[15] &#x3D; &#123;&quot;H&quot;, &quot;E&quot;, &quot;L&quot;, &quot;L&quot;, &quot;O&quot;&#125;;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;除此之外还允许在字符数组初始化时直接赋值字符串来初始化（<b>仅限初始化，程序其他位置不允许这样直接复制整个字符串</b>）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">char str[] &#x3D; &quot;Hello&quot;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-5-2-字符数组的输入和输出"><a href="#5-5-2-字符数组的输入和输出" class="headerlink" title="5.5.2 字符数组的输入和输出"></a>5.5.2 字符数组的输入和输出</h3><p>&ensp;&ensp;&ensp;&ensp;字符数组就是<code>char</code>数组，当维度为1时可以当作”字符串”。当维度为2时可以当作字符串数组，即若干字符串。字符数组除使用<code>scanf</code>外可以使用<code>getchar</code>或<code>gets</code>进行输入；除了<code>printf</code>外也可以使用<code>putchar</code>或<code>puts</code>进行输出。</p>
+<h4 id="1-scanf输入，printf输出"><a href="#1-scanf输入，printf输出" class="headerlink" title="(1)scanf输入，printf输出"></a>(1)scanf输入，printf输出</h4><p>&ensp;&ensp;&ensp;&ensp;<code>scanf</code>对字符类型有<code>%c</code>和<code>%s</code>两种格式(printf同理)，其中<b><code>%c</code>用来输入单个字符，<code>%s</code>用来输入一个字符串并存在字符数组里。<code>%c</code>格式能够识别空格和换行并将其输入，而<code>%s</code>通过空格或换行来识别一个字符串的结束。</b>示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main() &#123;</span><br><span class="line">    char str[10];</span><br><span class="line">    scanf(&quot;%s&quot;, str);</span><br><span class="line">    printf(&quot;%s&quot;, str);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;输出数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TAT TAT TAT</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TAT</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-getchar输入，purchar输出"><a href="#2-getchar输入，purchar输出" class="headerlink" title="(2)getchar输入，purchar输出"></a>(2)getchar输入，purchar输出</h4><p>&ensp;&ensp;&ensp;&ensp;<code>getchar</code>和<code>putchar</code>分别用来输入和输出单个字符，示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main() &#123;</span><br><span class="line">    char str[5][5];</span><br><span class="line">    for(int i &#x3D; 0; i &lt; 3; i++) &#123;</span><br><span class="line">        for(int j &#x3D; 0; j &lt; 3; j++) &#123;</span><br><span class="line">            str[i][j] &#x3D; getchar();</span><br><span class="line">        &#125;</span><br><span class="line">        getchar(); &#x2F;&#x2F;为了吸收每行末尾的换行符</span><br><span class="line">    &#125;</span><br><span class="line">    for(int i &#x3D; 0; i &lt; 3; i++) &#123;</span><br><span class="line">        for(int j &#x3D; 0; j &lt; 3; j++) &#123;</span><br><span class="line">            putchar(str[i][j]);</span><br><span class="line">        &#125;</span><br><span class="line">        putchar(&#39;\n&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;输入数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">^_^</span><br><span class="line">_^_</span><br><span class="line">^_^</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;输出数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">^_^</span><br><span class="line">_^_</span><br><span class="line">^_^</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-gets输入和puts输出"><a href="#3-gets输入和puts输出" class="headerlink" title="(3)gets输入和puts输出"></a>(3)gets输入和puts输出</h4><p>&ensp;&ensp;&ensp;&ensp;<code>gets</code>用来输入一行字符串（注意：<b><code>gets</code>识别换行符<code>\n</code>作为输入结束，因此<code>scanf</code>完一个完整数后，如果要使用<code>gets</code>，需要先用<code>getchar</code>接受整数后的换行符</b>），并将其存放于一维数组（或二维数组的一维）中；<code>puts</code>用来输出一行字符串，即将一维数组（或二维数组的一维）在界面上输出，并紧跟一个换行。示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main() &#123;</span><br><span class="line">    char str1[20];</span><br><span class="line">    char str2[5][10];</span><br><span class="line">    gets[str1];</span><br><span class="line">    for(int i &#x3D; 0;i &lt; 3; i++) &#123;</span><br><span class="line">        gets(str2[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    puts(str1);</span><br><span class="line">    for(int i &#x3D; 0; i &lt; 3; i++) &#123;</span><br><span class="line">        printf(str2[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;输入数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Hello</span><br><span class="line">QAQ</span><br><span class="line">T_T</span><br><span class="line">World</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;输出数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Hello</span><br><span class="line">QAQ</span><br><span class="line">T_T</span><br><span class="line">World</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;Hello储存在str1中，而<code>QAQ</code>、<code>T_T</code>、<code>World</code>分别储存在<code>str2[0]</code>，<code>str2[1]</code>，<code>str2[2]</code>中</p>
+<h3 id="5-5-3-字符数组的存放方式"><a href="#5-5-3-字符数组的存放方式" class="headerlink" title="5.5.3 字符数组的存放方式"></a>5.5.3 字符数组的存放方式</h3><p>&ensp;&ensp;&ensp;&ensp;字符数组是由若干个<code>char</code>类型的元素组成，因此字符数组的每一位都是一个<code>char</code>字符。除此之外，在一维数组（或是二维数组的第二维）的末尾都有一个<b>空字符<code>\0</code></b>，以<b>表示存放的字符串的结尾</b>。空字符<code>\0</code>在使用<code>gets</code>或<code>scanf</code>输入字符串时会自动添加在输入的字符后面，并占用一个字符位；而<code>puts</code>和<code>printf</code>就是通过识别<code>\0</code>作为字符串的结尾来输出的。</p>
+<table>
+    <tr>
+        <td>H</td>
+        <td>e</td>
+        <td>l</td>
+        <td>l</td>
+        <td>o</td>
+        <td>,</td>
+        <td>空格</td>
+        <td>W</td>
+        <td>o</td>
+        <td>r</td>
+        <td>l</td>
+        <td>d</td>
+        <td>!</td>
+        <td>\0</td>
+    </tr>
+</table>
+
+<blockquote>
+<p>int型数组的末尾不需要加<code>\0</code>，只有<code>char</code>型数组需要。<code>\0</code>的ASCII码是0，空格、字符0与空字符<code>NULL</code>不是一回事。<br>如果不是使用<code>scanf</code>函数的<code>%s</code>格式或<code>gets</code>函数输入字符串（例如使用<code>getchgar</code>），一定要在每个字符串后手动添加空字符<code>\0</code>。否则会因无法识别字符串末尾而输出乱码。</p>
+</blockquote>
+<h2 id="5-6-string-h头文件"><a href="#5-6-string-h头文件" class="headerlink" title="5.6 string.h头文件"></a>5.6 string.h头文件</h2><p>&ensp;&ensp;&ensp;&ensp;string.h头文件包含许多用于字符数组的函数。常用函数如下。</p>
+<h3 id="5-6-1-strlen"><a href="#5-6-1-strlen" class="headerlink" title="5.6.1 strlen()"></a>5.6.1 strlen()</h3><p>&ensp;&ensp;&ensp;&ensp;<code>strlen</code>函数可以得到字符数组中第一个<code>\0</code>前的字符个数，其格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strlen(字符数组);</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-6-2-strcmp"><a href="#5-6-2-strcmp" class="headerlink" title="5.6.2 strcmp()"></a>5.6.2 strcmp()</h3><p>&ensp;&ensp;&ensp;&ensp;<code>strcmp</code>函数返回两个字符串的大小比较结果，比较原则是按照<b>字典序</b>，其格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strcmp(字符数组1, 字符数组2);</span><br></pre></td></tr></table></figure>
+
+<p>&ensp;&ensp;&ensp;&ensp;所谓<b>字典序</b>就是字符串在字典中的顺序，因此如果有两个字符数组<code>str1</code>和<code>str2</code>，且满足<code>str[0...k-1] == str2[0...k-1]</code>、<code>str1[k] &lt; str2[k]</code>，那么就说<code>str1</code>的字典序小于<code>str2</code>。<code>strcmp()</code>函数返回结果如下：<br>&ensp;&ensp;&ensp;&ensp;1.如果字符数组1 &lt; 字符数组2，则返回一个负整数（不同编译器处理不同，不一定是-1）；<br>&ensp;&ensp;&ensp;&ensp;2.如果字符数组1 == 字符数组2，则返回0；<br>&ensp;&ensp;&ensp;&ensp;3.如果字符数组1 &gt; 字符数组2，则返回一个正整数（不同编译器处理不同，不一定是+1）；</p>
+<h3 id="5-6-3-strcpy"><a href="#5-6-3-strcpy" class="headerlink" title="5.6.3 strcpy()"></a>5.6.3 strcpy()</h3><p>&ensp;&ensp;&ensp;&ensp;<code>strcpy</code>函数可以把一个字符串复制给另一个字符串，其格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strcpy(字符数组1, 字符数组2);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意是把字符数组2复制给字符数组1，这里的”复制”包括了结束符”<code>\0</code>“</p>
+</blockquote>
+<h3 id="5-6-4-strcat"><a href="#5-6-4-strcat" class="headerlink" title="5.6.4 strcat()"></a>5.6.4 strcat()</h3><p>&ensp;&ensp;&ensp;&ensp;<code>strcat</code>函数可以把一个字符串接到另一个字符串后面，其格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strcat(字符数组1, 字符数组2);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意是把字符数组2接到字符数组1后面</p>
+</blockquote>
+<h2 id="5-7-sscanf与sprintf"><a href="#5-7-sscanf与sprintf" class="headerlink" title="5.7 sscanf与sprintf"></a>5.7 sscanf与sprintf</h2><p>&ensp;&ensp;&ensp;&ensp;<code>sscanf</code>实际上是<code>string + scanf</code>，<code>sprintf</code>实际上是<code>string + printf</code>。事实上，<code>scanf</code>与<code>printf</code>实际格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scanf(&quot;%d&quot;, &amp;n); </span><br><span class="line">scanf(screen, &quot;%d&quot;, &amp;n);</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;上述两种写法是等价的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">printf(&quot;%d&quot;, n);</span><br><span class="line">printf(screen, &quot;%d&quot;, n);</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;上述两种写法也是等价的。<br>&ensp;&ensp;&ensp;&ensp;由此可以看出，实际上<code>scanf</code>是指从屏幕获取的内容以<code>%d</code>的格式存储到遍变量<code>n</code>中，<code>printf</code>则是指从变量<code>n</code>中获取对应值，然后以<code>%d</code>的格式输出到屏幕。由此可以得到<code>sscanf</code>与<code>sprintf</code>的实际意义：<br>&ensp;&ensp;&ensp;&ensp;<code>sscanf</code>的作用是把字符数组<code>str</code>中的内容以<code>%d</code>的格式写入到<code>n</code>中（从左至右）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sscanf(str, &quot;%d&quot;, &amp;n);</span><br></pre></td></tr></table></figure>
+
+<p>&ensp;&ensp;&ensp;&ensp;<code>sprintf</code>的作用是把<code>n</code>以<code>%d</code>的格式写入到<code>str</code>字符数组中（从右至左）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sprintf(str, &quot;%d&quot;, n);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>sscanf</code>支持正则表达式，也可以使用各种复杂的格式控制符进行输入输出。</p>
+</blockquote>
 
     </div>
 
@@ -342,7 +448,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#3-选择结构"><span class="nav-number">1.</span> <span class="nav-text">3.选择结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-if语句"><span class="nav-number">1.1.</span> <span class="nav-text">3.1 if语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-if语句的嵌套"><span class="nav-number">1.2.</span> <span class="nav-text">3.2 if语句的嵌套</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-switch语句"><span class="nav-number">1.3.</span> <span class="nav-text">3.3 switch语句</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-循环结构"><span class="nav-number">2.</span> <span class="nav-text">4.循环结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-while语句"><span class="nav-number">2.1.</span> <span class="nav-text">4.1 while语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-do…while语句"><span class="nav-number">2.2.</span> <span class="nav-text">4.2 do…while语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-for循环"><span class="nav-number">2.3.</span> <span class="nav-text">4.3 for循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-break和continue"><span class="nav-number">2.4.</span> <span class="nav-text">4.4 break和continue</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-数组"><span class="nav-number">3.</span> <span class="nav-text">5.数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-一维数组"><span class="nav-number">3.1.</span> <span class="nav-text">5.1 一维数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-冒泡排序"><span class="nav-number">3.2.</span> <span class="nav-text">5.2 冒泡排序</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#3-选择结构"><span class="nav-number">1.</span> <span class="nav-text">3.选择结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-if语句"><span class="nav-number">1.1.</span> <span class="nav-text">3.1 if语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-if语句的嵌套"><span class="nav-number">1.2.</span> <span class="nav-text">3.2 if语句的嵌套</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-switch语句"><span class="nav-number">1.3.</span> <span class="nav-text">3.3 switch语句</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-循环结构"><span class="nav-number">2.</span> <span class="nav-text">4.循环结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-while语句"><span class="nav-number">2.1.</span> <span class="nav-text">4.1 while语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-do…while语句"><span class="nav-number">2.2.</span> <span class="nav-text">4.2 do…while语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-for循环"><span class="nav-number">2.3.</span> <span class="nav-text">4.3 for循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-break和continue"><span class="nav-number">2.4.</span> <span class="nav-text">4.4 break和continue</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-数组"><span class="nav-number">3.</span> <span class="nav-text">5.数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-一维数组"><span class="nav-number">3.1.</span> <span class="nav-text">5.1 一维数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-冒泡排序"><span class="nav-number">3.2.</span> <span class="nav-text">5.2 冒泡排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-二维数组"><span class="nav-number">3.3.</span> <span class="nav-text">5.3 二维数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-memset——对数组中每个元素赋相同的值"><span class="nav-number">3.4.</span> <span class="nav-text">5.4 memset——对数组中每个元素赋相同的值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-5-字符数组"><span class="nav-number">3.5.</span> <span class="nav-text">5.5 字符数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-1-字符数组的初始化"><span class="nav-number">3.5.1.</span> <span class="nav-text">5.5.1 字符数组的初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-2-字符数组的输入和输出"><span class="nav-number">3.5.2.</span> <span class="nav-text">5.5.2 字符数组的输入和输出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-scanf输入，printf输出"><span class="nav-number">3.5.2.1.</span> <span class="nav-text">(1)scanf输入，printf输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-getchar输入，purchar输出"><span class="nav-number">3.5.2.2.</span> <span class="nav-text">(2)getchar输入，purchar输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-gets输入和puts输出"><span class="nav-number">3.5.2.3.</span> <span class="nav-text">(3)gets输入和puts输出</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-3-字符数组的存放方式"><span class="nav-number">3.5.3.</span> <span class="nav-text">5.5.3 字符数组的存放方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-6-string-h头文件"><span class="nav-number">3.6.</span> <span class="nav-text">5.6 string.h头文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-6-1-strlen"><span class="nav-number">3.6.1.</span> <span class="nav-text">5.6.1 strlen()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-6-2-strcmp"><span class="nav-number">3.6.2.</span> <span class="nav-text">5.6.2 strcmp()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-6-3-strcpy"><span class="nav-number">3.6.3.</span> <span class="nav-text">5.6.3 strcpy()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-6-4-strcat"><span class="nav-number">3.6.4.</span> <span class="nav-text">5.6.4 strcat()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-7-sscanf与sprintf"><span class="nav-number">3.7.</span> <span class="nav-text">5.7 sscanf与sprintf</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
