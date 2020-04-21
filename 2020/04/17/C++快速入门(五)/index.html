@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="7.指针">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C&#x2F;C++快速入门(五)">
+<meta property="og:url" content="http://yoursite.com/2020/04/17/C++%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8(%E4%BA%94)/index.html">
+<meta property="og:site_name" content="Reznov Lee">
+<meta property="og:description" content="7.指针">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-17T07:23:23.000Z">
+<meta property="article:modified_time" content="2020-04-21T08:07:30.129Z">
+<meta property="article:author" content="Reznov Lee">
+<meta property="article:tag" content="C&#x2F;C++">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/04/17/C++%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8(%E4%BA%94)/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>C/C++快速入门(五) | Reznov Lee</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Reznov Lee</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/17/C++%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8(%E4%BA%94)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Reznov Lee">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Reznov Lee">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C/C++快速入门(五)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-04-17 15:23:23" itemprop="dateCreated datePublished" datetime="2020-04-17T15:23:23+08:00">2020-04-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-21 16:07:30" itemprop="dateModified" datetime="2020-04-21T16:07:30+08:00">2020-04-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CPP/" itemprop="url" rel="index"><span itemprop="name">CPP</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="7-指针"><a href="#7-指针" class="headerlink" title="7.指针"></a>7.指针</h1><a id="more"></a>
+
+<h2 id="7-1-什么是指针"><a href="#7-1-什么是指针" class="headerlink" title="7.1 什么是指针"></a>7.1 什么是指针</h2><p>&ensp;&ensp;&ensp;&ensp;首先解释变量在内存中是如何存放的。<br>&ensp;&ensp;&ensp;&ensp;在计算机中，每个变量都会存放在内存分配的一个空间，而每种类型的变量所占用的空间有是不一样的。例如<code>int</code>型的变量占用4Byte，而<code>long long</code>型的变量占用8Byte。可以把一个字节理解为一个<b>“房间”</b>，这样一个<code>int</code>型的变量就需要占用4个连续的”房间”；而由<code>long long</code>型的变量就需要占用8个连续的”房间”来存放。那么既然有房间，就肯定有”<b>房间号</b>“，且每个房间都会有一个房间号。对应计算机中，<b>每个字节（即房间）都会有一个地址（即房间号），</b>这里的地址就起房间号的作用，即变量存放的位置，而<b>计算机就是通过地址找到某个变量</b>的。变量的地址一般指它占用的字节中第一个字节的地址，也就是说，一个<code>int</code>型变量的地址就是它占用的4Byte当中第一个字节的地址。</p>
+<table>
+    <tr>
+        <td>...</td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>1000</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>1004</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>1008</td>
+    </tr>
+    <tr>
+        <td>...</td>
+        <td> </td>
+    </tr>
+<table>
+
+<p>&ensp;&ensp;&ensp;&ensp;根据上面的理解可知，一个房间号<b>“指向”</b>一个房间，对应到计算机上就是一个地址<b>“指向”</b>一个变量，可以通过地址来找到变量。在C语言中用<b>“指针”</b>来表示内存地址（或者称指针指向了内存地址），而如果这个内存地址恰好是某个变量的地址，那么又称”这个指针指向该变量”。可以简单理解为<b>指针就是变量的地址</b>（但不严谨）。<br>&ensp;&ensp;&ensp;&ensp;获取变量的地址通过取之运算符<b>&amp;</b>，<b>只要在变量前加上&amp;，就表示变量的地址</b>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main() &#123;</span><br><span class="line">    int a &#x3D; 1;</span><br><span class="line">    printf(&quot;%d, %d\n&quot;, &amp;a, a);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2686748, 1</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;地址输出的结果不是唯一的，在不同环境下会有所不同，实际上指针是一个整数，<b>指针是一个unsigned类型的整数</b>。</p>
+<h2 id="7-2-指针变量"><a href="#7-2-指针变量" class="headerlink" title="7.2 指针变量"></a>7.2 指针变量</h2><p>&ensp;&ensp;&ensp;&ensp;<b>指针变量用来存放指针（或者可以理解成地址）</b>。指针变量的定义和普通变量有所区别，它在某种数据类型后加星号*来表示这是一个指针变量，示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int* p;</span><br><span class="line">double* p;</span><br><span class="line">char* p;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;注意，星号”*”的位置在数据类型之后或者变量名之前都是可以的，编译器不会对此进行区分。如果一次有好几个变量需要同时定义，那么采用如下定义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int* p1, *p2, *p3;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;指针变量存放的是地址，而<b>&amp;</b>则是取地址运算符，因此<b>给指针变量赋值的方式一般是把变量的地址取出来，然后赋给对应类型的指针变量：</b></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int a;</span><br><span class="line">int* p &#x3D; &amp;a;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;需要注意的是，<code>int*</code>是指针变量的类型，而后面的<code>p</code>才是变量名，用来存储地址的，因此<b>地址<code>&amp;a</code>是赋值给p而不是<code>*p</code>的</b>。<b>星号是类型的一部分，而不是变量的一部分，<code>a</code>代表变量的值，<code>&amp;a</code>代表变量的地址，<code>p</code>储存<code>&amp;a</code>表示变量a的地址，<code>*p</code>代表<code>a</code>的值</b>，即为了通过<code>p</code>来获得变量<code>a</code>，可以<b>把星号<code>*</code>视为一把开启房间的钥匙，将其加在<code>p</code>的前面，</b>这样<code>*p</code>就可以把房间打开，然后获得变量<code>a</code>的值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main() &#123;</span><br><span class="line">    int a;</span><br><span class="line">    int* p &#x3D; &amp;a;</span><br><span class="line">    a &#x3D; 233;</span><br><span class="line">    printf(&quot;%d\n&quot;, *p);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">233</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;在上述代码中，首先定义了<code>int</code>型变量<code>a</code>，但是没有对其进行初始化。然后定义了指针变量<code>p</code>，并将<code>a</code>的地址赋值给<code>p</code>。这时，指针变量<code>p</code>存放了<code>a</code>的地址。之后<code>a</code>被赋值为233，也就是说，<b>a所在的地址的房间内的东西被改变了，但这并不影响它的地址。</b>既然<code>p</code>保存的是地址，<code>*p</code>是这个地址中存放的元素，那么如果直接对<code>*p</code>进行赋值，也可以起到改变那个保存元素的功能，就像下面的这个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main() &#123;</span><br><span class="line">    int a;</span><br><span class="line">    int* p &#x3D; &amp;a;</span><br><span class="line">    *p &#x3D; 233;</span><br><span class="line">    printf(&quot;%d, %d\n&quot;, *p, a);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">233, 233</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;在上述代码中，令指针变量<code>p</code>存<code>a</code>的地址，然后对<code>*p</code>进行赋值，最后在输出时，<code>*p</code>和<code>a</code>都会输出那个值。</p>
+<blockquote>
+<p>对于一个<code>int*</code>型指针变量<code>p</code>来说，<b><code>p+1</code>是指<code>p</code>所指的<code>int</code>型变量的下一个<code>int</code>型变量地址。</b>这个所谓的”下一个”是跨越了一整个<code>int</code>型（即4Byte），因此如果是<code>p+i</code>，则说明是跨越当前<code>int</code>型变量之后第<code>i</code>个<code>int</code>型变量。指针变量支持自增<code>p++</code>自减<code>p--</code>操作，且常用于数组中。</p>
+</blockquote>
+<p>&ensp;&ensp;&ensp;&ensp;对指针变量来说，把其储存的地址的类型称为<b>基类型</b>，例如定义为<code>int* p</code>的指针变量，<code>int</code>就是他的基类型。基类型必须和指针变量存储的地址类相同，也就是说，上面定义的指针变量<code>p</code>不能够存放<code>double</code>或者<code>char</code>类型数据的地址。而必须是<code>int</code>型数据的地址。</p>
+<h2 id="7-3-指针与数组"><a href="#7-3-指针与数组" class="headerlink" title="7.3 指针与数组"></a>7.3 指针与数组</h2><p>&ensp;&ensp;&ensp;&ensp;数组元素的地址可以在数组元素之前直接加取地址符<b>&amp;</b>，C语言中数组名称也可作为数组的首地址使用，所以<code>a == &amp;a[0]</code>成立。同理，如果访问数组后续元素，只需要使用<code>a+i</code>的写法即可，即<code>a+i</code>等同于<code>&amp;a[i]</code>（<code>*(a+i)=a[i]</code>）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main() &#123;</span><br><span class="line">    int a[10];</span><br><span class="line">    for(int i &#x3D; 0; i &lt; 10; i++&gt;) &#123;</span><br><span class="line">        scanf(&quot;%d&quot;, a + i);</span><br><span class="line">    &#125;</span><br><span class="line">    for(int i &#x3D; 0; i &lt; 10; i++&gt;) &#123;</span><br><span class="line">        printf(&quot;%d &quot;, *(a + i));</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;输入10个数组元素：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 2 3 4 5 6 7 8 9 10</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 2 3 4 5 6 7 8 9 10</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;；另外，由于指针变量可以使用自增操作，因此可以这样枚举数组中的元素：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main() &#123;</span><br><span class="line">    int a[10] &#x3D; &#123;1, 2, 3, 4, 5, 6, 7, 8, 9, 10&#125;;</span><br><span class="line">    for(int* p &#x3D; a; p &lt; a + 10; p++) &#123;</span><br><span class="line">        printf(&quot;%d &quot;, *p);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 2 3 4 5 6 7 8 9 10</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;最后提一下指针的减法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main() &#123;</span><br><span class="line">    int a[10] &#x3D; &#123;1, 4, 9, 16, 25, 36, 49&#125;;</span><br><span class="line">    int* p &#x3D; a;</span><br><span class="line">    int* q &#x3D; &amp;a[5];</span><br><span class="line">    printf(&quot;q &#x3D;&#x3D; %d\n&quot;, q);</span><br><span class="line">    printf(&quot;p &#x3D;&#x3D; %d\n&quot;, p);</span><br><span class="line">    printf(&quot;q - p &#x3D;&#x3D; %d\n&quot;, q - p);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">q &#x3D; 2686708</span><br><span class="line">p &#x3D; 2686688</span><br><span class="line">q - p &#x3D; 5</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;上面的代码中，<code>p</code>与<code>q</code>具体数值与具体环境相关，但是两者差值一定是5；由于数组名<code>a</code>直接作为数组<code>a</code>的首元素地址的，因此<code>p</code>和<code>q</code>其实分别是<code>&amp;a[0]</code>与<code>&amp;a[5]</code>。这样<code>q-p</code>就是指两个地址之间的举距离，而<b>这个距离以int为单位</b>。通俗来说，<b>两个<code>int</code>型的指针相减，等价于在求两个指针相差了几个<code>int</code></b>。</p>
+<h2 id="7-4-使用指针变量作为函数参数"><a href="#7-4-使用指针变量作为函数参数" class="headerlink" title="7.4 使用指针变量作为函数参数"></a>7.4 使用指针变量作为函数参数</h2><p>&ensp;&ensp;&ensp;&ensp;指针类型也可以作为函数参数的类型，这时<b>视为把变量的地址传入函数。如果在函数中对这个地址中的元素进行改变，原先的数据就会确实的被改变。</b></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">void change(int* p) &#123;</span><br><span class="line">    *p &#x3D; 233;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    int a &#x3D; 1;</span><br><span class="line">    int* p &#x3D; &amp;a;</span><br><span class="line">    change(p);</span><br><span class="line">    printf(&quot;%d\n&quot;, a);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">233</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;在上述代码中，把<code>int*</code>型指针变量<code>p</code>赋值为<code>a</code>的地址，然后通过<code>change</code>函数把指针变量<code>p</code>作为参数传入。<b>此时传入的其实是<code>a</code>的地址</b>。值<code>change</code>函数中，使用<code>*p</code>修改地址中存放的数据，也就是改变了<code>a</code>本身。当最后输出<code>a</code>时，就已经是改变了的值。这种传递方式被称为<b>地址传递</b>。下面是一个经典例子：<b>使用指针作为参数，交换两个数</b>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main() &#123;</span><br><span class="line">    int a &#x3D; 1, b &#x3D; 2;</span><br><span class="line">    int temp &#x3D; a;</span><br><span class="line">    a &#x3D; b;</span><br><span class="line">    b &#x3D; temp;</span><br><span class="line">    printf(&quot;a &#x3D; %d, b &#x3D; %d\n&quot;, a, b);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; 2, b &#x3D; 1</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;如果写成函数的形式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">void swap(int a, int b) &#123;</span><br><span class="line">    int temp &#x3D; a;</span><br><span class="line">    a &#x3D; b;</span><br><span class="line">    b &#x3D; temp; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main () &#123;</span><br><span class="line">    int a &#x3D; 1, b &#x3D; 2;</span><br><span class="line">    swap(a, b);</span><br><span class="line">    printf(&quot;a &#x3D; %d, b &#x3D; %d\n&quot;, a, b);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; 1, b &#x3D; 2</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;这是因为函数在接收参数的过程中是<b>单向一次性</b>的<b>值传递</b>。也就是说，在调用<code>swap(a, b)</code>时只是把<code>a</code>和<code>b</code>的值传进去了，这样相当于产生了一个<b>副本</b>，对这个副本的操作不会影响<code>main</code>函数中的<code>a</code>和<code>b</code>的值。<br>&ensp;&ensp;&ensp;&ensp;指针变量存放的是变量的地址，所以使用指针传递的也是变量的地址。<b>只有在获取地址的情况下对元素进行操作，才能真正地修改变量</b>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">void swap(int* a, int* b) &#123;</span><br><span class="line">    int temp &#x3D; *a;</span><br><span class="line">    *a &#x3D; *b;</span><br><span class="line">    *b &#x3D; temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    int a &#x3D; 1, b &#x3D; 2;</span><br><span class="line">    int* p1 &#x3D; &amp;a, int* p2 &#x3D; &amp;b;</span><br><span class="line">    swap(p1, p2);</span><br><span class="line">    printf(&quot;a &#x3D; %d, b &#x3D; %d\n&quot;, *p1, *p2);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; 2, b &#x3D; 1</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;在上述代码中，把<code>&amp;a</code>（<code>a</code>的地址）和<code>&amp;b</code>（<code>b</code>的地址）作为参数传入，使得<code>swap</code>函数中<code>int*</code>型指针变量<code>a</code>存放<code>&amp;a</code>、指针变量<code>b</code>存放<code>&amp;b</code>。这时<code>swap</code>函数中的<code>a</code>和<code>b</code>都是地址，而<code>*a</code>和<code>*b</code>就是地址中存放的数据，可以”看成”是<code>int</code>型变量，接下来就按照正常交换思路进行交换。由于是直接对地址中存放的数据进行操作，所以交换会改变<code>main</code>函数中<code>a</code>与<code>b</code>的值，最终交换<code>a</code>和<code>b</code>。下面示范两个<b>错误写法</b>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">void swap(int* a, int* b) &#123;</span><br><span class="line">    int* temp;</span><br><span class="line">    *temp &#x3D; *a;</span><br><span class="line">    *a &#x3D; *b;</span><br><span class="line">    *b &#x3D; temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;上述写法本身没有问题，但问题出在<code>int* temp</code>身上，因为<code>temp</code>没有初始化，其值是随机的，若万一该指针指向的地址在系统工作区就会造成错误（概率很大）。改写成下例即可解决；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">void swap(int* a, int* b) &#123;</span><br><span class="line">    int x;</span><br><span class="line">    int* temp &#x3D; &amp;x;</span><br><span class="line">    *temp &#x3D; *a;</span><br><span class="line">    *a &#x3D; *b;</span><br><span class="line">    *b &#x3D; temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;<b>错误写法二</b>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">void swap(int* a, int* b) &#123;</span><br><span class="line">    int* temp &#x3D; a;</span><br><span class="line">    a &#x3D; b;</span><br><span class="line">    b &#x3D; temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;这种写法的思路是直接交换两变量的地址，但是该做法实质上是交换了<b>两个值对应地址的<code>unsigned</code>类型整数，是值传递</b>，而不是地址传递。</p>
+<h2 id="7-5-引用"><a href="#7-5-引用" class="headerlink" title="7.5 引用"></a>7.5 引用</h2><h3 id="7-5-1-引用的含义"><a href="#7-5-1-引用的含义" class="headerlink" title="7.5.1 引用的含义"></a>7.5.1 引用的含义</h3><p>&ensp;&ensp;&ensp;&ensp;C++中的引用是指不产生副本，给原变量起了个别名，而对<b>引用变量的操作就是对原变量的操作</b>。引用的使用方法很简单，即在函数参数类型后加上一个<b>&amp;</b>。示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">void change(int &amp;x) &#123;</span><br><span class="line">    x &#x3D; 1;</span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line">    int x &#x3D; 10;</span><br><span class="line">    change(x);</span><br><span class="line">    printf(&quot;%d\n&quot;, x);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;在上述代码中，在<code>change</code>函数的参数<code>int x</code>中加入了<b>&amp;</b>，在传入参数时对参数的修改就会对原变量进行修改。需要注意的是，<b>不管是否使用引用，函数参数名和实际传入的参数名可以不同</b>。上述的<code>change()</code>函数的参数名可以任意，不一定与原函数一致。</p>
+<blockquote>
+<p>引用不是取地址<b>&amp;</b>的意思。</p>
+</blockquote>
+<h3 id="7-5-2-指针的引用"><a href="#7-5-2-指针的引用" class="headerlink" title="7.5.2 指针的引用"></a>7.5.2 指针的引用</h3><p>&ensp;&ensp;&ensp;&ensp;7.4中的错误示例代码2中，试图通过将传入地址交换来打到交换两个变量的目的，通过引用即可实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">void swap(int* &amp;p1, int* &amp;p2) &#123;</span><br><span class="line">    int* temp &#x3D; p1;</span><br><span class="line">    p1 &#x3D; p2;</span><br><span class="line">    p2 &#x3D; temp; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main () &#123;</span><br><span class="line">    int a &#x3D; 1, b &#x3D; 2;</span><br><span class="line">    int *p1 &#x3D; &amp;a, *p2 &#x3D; &amp;b; </span><br><span class="line">    swap(p1, p2);</span><br><span class="line">    printf(&quot;a &#x3D; %d, b &#x3D; %d\n&quot;, *p1, *p2);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;<b>常量是不能使用引用的</b>，所以上述代码不能写成<code>swap(&amp;a,&amp;b)</code>。</p>
+<blockquote>
+<p>在读不清引用含义时，先去掉引用读，再带回引用中。</p>
+</blockquote>
+</table></table>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C-C/" rel="tag"># C/C++</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/15/C++%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8(%E5%9B%9B)/" rel="prev" title="C/C++快速入门(四)">
+      <i class="fa fa-chevron-left"></i> C/C++快速入门(四)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/21/C++%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8(%E5%85%AD)/" rel="next" title="C/C++快速入门(六)">
+      C/C++快速入门(六) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#7-指针"><span class="nav-number">1.</span> <span class="nav-text">7.指针</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-什么是指针"><span class="nav-number">1.1.</span> <span class="nav-text">7.1 什么是指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-指针变量"><span class="nav-number">1.2.</span> <span class="nav-text">7.2 指针变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-3-指针与数组"><span class="nav-number">1.3.</span> <span class="nav-text">7.3 指针与数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-4-使用指针变量作为函数参数"><span class="nav-number">1.4.</span> <span class="nav-text">7.4 使用指针变量作为函数参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-5-引用"><span class="nav-number">1.5.</span> <span class="nav-text">7.5 引用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-5-1-引用的含义"><span class="nav-number">1.5.1.</span> <span class="nav-text">7.5.1 引用的含义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-5-2-指针的引用"><span class="nav-number">1.5.2.</span> <span class="nav-text">7.5.2 指针的引用</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Reznov Lee</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Reznov Lee</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
