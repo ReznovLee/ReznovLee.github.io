@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库（一）">
+<meta property="og:url" content="http://yoursite.com/2020/05/20/%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
+<meta property="og:site_name" content="Reznov Lee">
+<meta property="og:description" content="数据库">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-20T00:00:31.000Z">
+<meta property="article:modified_time" content="2020-05-20T10:03:35.744Z">
+<meta property="article:author" content="Reznov Lee">
+<meta property="article:tag" content="DB">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/05/20/%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>数据库（一） | Reznov Lee</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Reznov Lee</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/20/%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Reznov Lee">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Reznov Lee">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据库（一）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-05-20 08:00:31 / Modified: 18:03:35" itemprop="dateCreated datePublished" datetime="2020-05-20T08:00:31+08:00">2020-05-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DB/" itemprop="url" rel="index"><span itemprop="name">DB</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><a id="more"></a>
+
+<h2 id="1-数据库"><a href="#1-数据库" class="headerlink" title="1.数据库"></a>1.数据库</h2><p>&ensp;&ensp;&ensp;&ensp;将大量<b>数据</b>保存起来，通过计算机加工而成的可以进行高效访问的数据集合称为<b>数据库</b>（Database，DB）。用来管理数据库的计算机系统称为<b>数据库管理系统</b>（Database Management System，DBMS）。</p>
+<h2 id="2-数据库管理系统（DBMS）的种类"><a href="#2-数据库管理系统（DBMS）的种类" class="headerlink" title="2.数据库管理系统（DBMS）的种类"></a>2.数据库管理系统（DBMS）的种类</h2><h2 id="2-1-层次数据库（Hierarchical，HDB）"><a href="#2-1-层次数据库（Hierarchical，HDB）" class="headerlink" title="2.1 层次数据库（Hierarchical，HDB）"></a>2.1 层次数据库（Hierarchical，HDB）</h2><p>&ensp;&ensp;&ensp;&ensp;层次结构的方式表达数据，在关系型数据库出现后，现在很少使用。</p>
+<h2 id="2-2-关系数据库（Relational-Database，RDB）"><a href="#2-2-关系数据库（Relational-Database，RDB）" class="headerlink" title="2.2 关系数据库（Relational Database，RDB）"></a>2.2 关系数据库（Relational Database，RDB）</h2><p>&ensp;&ensp;&ensp;&ensp;关系型数据库是现阶段使用最广泛的数据库，与Excel一样采用<b>行和列组成的二维表来管理数据库</b>，同时还使用专门的<b>SQL</b>（Structured Query Language，结构化查询语言）对数据库进行操作。<br>&ensp;&ensp;&ensp;&ensp;这类DBMS称为关系型数据库管理系统（Relational Database Management System，RDBMS）。比较具有代表性的RDBMS有以下五种：</p>
+<blockquote>
+<p>Oracle Database: 甲骨文公司的RDBMS<br>SQL ServerL: 微软公司的RDBMS<br>DB2: IBM公司的RDBMS<br>PostgreSQL: 开源的RDBMS<br>MySQL: 开源的RDBMS</p>
+</blockquote>
+<h2 id="2-3-面向对象数据库（Object-Oriented-Database，OODB）"><a href="#2-3-面向对象数据库（Object-Oriented-Database，OODB）" class="headerlink" title="2.3 面向对象数据库（Object Oriented Database，OODB）"></a>2.3 面向对象数据库（Object Oriented Database，OODB）</h2><p>&ensp;&ensp;&ensp;&ensp;把数据已经对数据的操作集合起来以对象为单位进行管理，因此得名。面向对象数据库就是用来保存这些对象的数据库。</p>
+<h2 id="2-4-XML数据库（XML-Database，XMLDB）"><a href="#2-4-XML数据库（XML-Database，XMLDB）" class="headerlink" title="2.4 XML数据库（XML Database，XMLDB）"></a>2.4 XML数据库（XML Database，XMLDB）</h2><p>&ensp;&ensp;&ensp;&ensp;XML数据库可以对XML形式的数据进行高速处理。</p>
+<h2 id="2-5-键值存储系统（Key-Value-Store，KVS）"><a href="#2-5-键值存储系统（Key-Value-Store，KVS）" class="headerlink" title="2.5 键值存储系统（Key-Value Store，KVS）"></a>2.5 键值存储系统（Key-Value Store，KVS）</h2><p>&ensp;&ensp;&ensp;&ensp;是一种单纯用来保存查询所使用的主键（Key）和键值（Value）组合的数据库。键值存储系统现用于对大量数据进行高速查询的web服务中。</p>
+<h1 id="3-表的结构"><a href="#3-表的结构" class="headerlink" title="3.表的结构"></a>3.表的结构</h1><p>&ensp;&ensp;&ensp;&ensp;用来管理数据的二维表在关系数据库中简称为表。<b>根据SQL语句的内容返回的数据同样必须是二维表的形式</b>，返回结果不是二维表的SQL语句则无法执行。</p>
+<table>
+    <tr>
+        <td>编号</td>
+        <td>名称</td>    
+        <td>值</td>    
+    </tr>
+    <tr>
+        <td>001</td>
+        <td>A</td>    
+        <td>10</td>    
+    </tr>
+    <tr>
+        <td>002</td>
+        <td>B</td>    
+        <td>20</td>    
+    </tr>
+</table>
+
+<p>&ensp;&ensp;&ensp;&ensp;表的<b>列</b>（垂直方向）成为字段，它代表保存在表中的数据项目。在上表中，从编号到值共有3列，对于列的约束比Excel强，对应为数字的列只能输入数字，定义为日期的列只能输入日期。<br>&ensp;&ensp;&ensp;&ensp;与之相对，表的<b>行</b>（水平方向）称为<b>记录</b>，他相当于一条数据。上表一共有两行数据。<b>关系数据库必须以行进行单位进行数据读写</b>。</p>
+<h1 id="4-SQL概要"><a href="#4-SQL概要" class="headerlink" title="4. SQL概要"></a>4. SQL概要</h1><h2 id="4-1-SQL语句及其种类"><a href="#4-1-SQL语句及其种类" class="headerlink" title="4.1 SQL语句及其种类"></a>4.1 SQL语句及其种类</h2><p>&ensp;&ensp;&ensp;&ensp;SQL用<b>关键字</b>，表名，列名等组合而成的一条语句（SQL语句）来描述操作的内容。关键字是指那些含义或使用方法已事先定义好的英语单词，存在包含”对表进行查询”或者”参考这个表”等各种意义的关键字。<br>&ensp;&ensp;&ensp;&ensp;根据对RDBMS赋予的指令种类的不同，SQL语句可以分为以下三类：</p>
+<ul>
+<li>DLL<br>DDL（Data Defination Language，数据定义语言）用来创建或删除存储数据用的数据库以及数据库中的表等对象。DDL包含以下几种指令。</li>
+</ul>
+<blockquote>
+<p>CRETAE: 创建数据库和表等对象<br>DROP: 删除数据库和表等对象<br>ALTER: 修改数据库和表等对象的结构</p>
+</blockquote>
+<ul>
+<li>DML<br>DML（Data Manipulation Language，数据操纵语言）用来查询或者变更表中记录。DML包含以下几种指令。</li>
+</ul>
+<blockquote>
+<p>SELECT: 查询表中的数据<br>INSERT: 向表中插入新数据<br>UPDATE: 更新表中的数据<br>DELETE: 删除表中的数据</p>
+</blockquote>
+<ul>
+<li>DCL<br>DCL（Data Control Language，数据控制语言）用来确认或者取消对数据库中的数据进行的变更。DCL包含以下几种指令。</li>
+</ul>
+<blockquote>
+<p>COMMIT: 确认对数据库中数据进行的变更<br>ROLLBACK: 取消对数据库中数据进行的变更<br>GRANT: 赋予用户操作权限<br>REVOKE: 取消用户的操作权限</p>
+</blockquote>
+<p>&ensp;&ensp;&ensp;&ensp;<b>使用最多的是DML。</b></p>
+<h2 id="4-2-SQL的基本书写规则"><a href="#4-2-SQL的基本书写规则" class="headerlink" title="4.2 SQL的基本书写规则"></a>4.2 SQL的基本书写规则</h2><ul>
+<li><h3 id="SQL语句要以分号-结尾"><a href="#SQL语句要以分号-结尾" class="headerlink" title="SQL语句要以分号(;)结尾"></a>SQL语句要以分号(;)结尾</h3><p>&ensp;&ensp;&ensp;&ensp;一条SQL语句可以描述一个数据库操作。在RDBMS当中，SQL语句也是逐条执行的。</p>
+</li>
+<li><h3 id="SQL语句不区分大小写"><a href="#SQL语句不区分大小写" class="headerlink" title="SQL语句不区分大小写"></a>SQL语句不区分大小写</h3><p>&ensp;&ensp;&ensp;&ensp;SQL<b>不区分关键字大小写。</b>例如，不管写成SELECT还是select，解释都是一样的。表名和列名也是如此。但建议定义一个规则：关键字大写，表名的首字母大写，其余（列名）小写。<br>&ensp;&ensp;&ensp;&ensp;但需要注意的是，插入到表中的数据是区分大小写的。</p>
+</li>
+<li><h3 id="常数的书写方式是固定的"><a href="#常数的书写方式是固定的" class="headerlink" title="常数的书写方式是固定的"></a>常数的书写方式是固定的</h3><p>&ensp;&ensp;&ensp;&ensp;SQL语句常常需要直接书写字符串、日期或者数字。SQL语句含有字符串时，用单引号(‘ ‘)将字符串括起来说明是一个字符串（如’abc’）；日期同样用单引号(‘ ‘)将日期括起来（如(‘2020-5-20’)），数字书写不需要任何标识，直接写数字即可（如 1000）。</p>
+</li>
+<li><h3 id="单词需要用半角空格或者换行来分隔"><a href="#单词需要用半角空格或者换行来分隔" class="headerlink" title="单词需要用半角空格或者换行来分隔"></a>单词需要用半角空格或者换行来分隔</h3><p>&ensp;&ensp;&ensp;&ensp;SQL语句的单词之间需要用半角空格或者换行来分隔。示例如下：</p>
+<blockquote>
+<p>CREATE TABLE Product</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="5-表的创建"><a href="#5-表的创建" class="headerlink" title="5.表的创建"></a>5.表的创建</h1><h2 id="5-1-数据库的创建"><a href="#5-1-数据库的创建" class="headerlink" title="5.1 数据库的创建"></a>5.1 数据库的创建</h2><p>&ensp;&ensp;&ensp;&ensp;在创建表之前，需要创建用来存储表的数据库。运行<code>CREATE DATABASE</code>语句就可以在RDBMS上创建数据库了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE &lt;数据库名称&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-2-表的创建"><a href="#5-2-表的创建" class="headerlink" title="5.2 表的创建"></a>5.2 表的创建</h2><p>&ensp;&ensp;&ensp;&ensp;创建好数据库之后，接下来使用<code>CREATE TABLE</code>语句在其中创建表。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE &lt;表名&gt;</span><br><span class="line">(</span><br><span class="line">    &lt;列名1&gt; &lt;数据类型&gt; &lt;该列所需约束&gt;,</span><br><span class="line">    &lt;列名2&gt; &lt;数据类型&gt; &lt;该列所需约束&gt;,</span><br><span class="line">    &lt;列名3&gt; &lt;数据类型&gt; &lt;该列所需约束&gt;,</span><br><span class="line">    &lt;列名4&gt; &lt;数据类型&gt; &lt;该列所需约束&gt;,</span><br><span class="line">        .</span><br><span class="line">        .</span><br><span class="line">        .</span><br><span class="line">    &lt;列名n&gt; &lt;数据类型&gt; &lt;该列所需约束&gt;,</span><br><span class="line">    &lt;该表的约束1&gt;, &lt;该表的约束2&gt;,...);</span><br></pre></td></tr></table></figure>
+
+<p>&ensp;&ensp;&ensp;&ensp;例如，我们需要创建下列表格：</p>
+<table>
+    <tr>
+        <td>商品编号</td>
+        <td>商品名称</td>
+        <td>商品种类</td>
+        <td>销售单价</td>
+        <td>进货单价</td>
+        <td>登记日期</td>
+    </tr>
+    <tr>
+        <td>0001</td>
+        <td>T恤衫</td>
+        <td>衣服</td>
+        <td>1000</td>
+        <td>500</td>
+        <td>2009-09-20</td>
+    </tr>
+    <tr>
+        <td>0002</td>
+        <td>打孔器</td>
+        <td>办公用品</td>
+        <td>500</td>
+        <td>320</td>
+        <td>2009-9-11</td>
+    </tr>
+    <tr>
+        <td>0003</td>
+        <td>运动T恤</td>
+        <td>衣服</td>
+        <td>4000</td>
+        <td>2800</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>0004</td>
+        <td>菜刀</td>
+        <td>厨房用具</td>
+        <td>3000</td>
+        <td>2800</td>
+        <td>2009-09-20</td>
+    </tr>
+    <tr>
+        <td>0005</td>
+        <td>高压锅</td>
+        <td>厨房用具</td>
+        <td>6800</td>
+        <td>5000</td>
+        <td>2009-01-15</td>
+    </tr>
+    <tr>
+        <td>0006</td>
+        <td>叉子</td>
+        <td>厨房用具</td>
+        <td>500</td>
+        <td></td>
+        <td>2009-09-20</td>
+    </tr>
+    <tr>
+        <td>0007</td>
+        <td>擦菜板</td>
+        <td>厨房用具</td>
+        <td>800</td>
+        <td>790</td>
+        <td>2009-11-11</td>
+    </tr>
+    <tr>
+        <td>0008</td>
+        <td>圆珠笔</td>
+        <td>办公用品</td>
+        <td>100</td>
+        <td></td>
+        <td>2009-11-11</td>
+    </tr>
+</table>
+
+<p>&ensp;&ensp;&ensp;&ensp;可以使用下列语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE Product</span><br><span class="line">(product_id CHAR(4) NOT　NULL,</span><br><span class="line"> product_name VARCHAR(100) NOT　NULL,</span><br><span class="line"> product_type VARCHAR(32) NOT　NULL,</span><br><span class="line"> product_price INTEGER ,</span><br><span class="line"> sale_price INTEGER ,</span><br><span class="line"> regist_date DATE ,</span><br><span class="line"> PRIMARY KEY (product_id));</span><br></pre></td></tr></table></figure>
+
+<p>&ensp;&ensp;&ensp;&ensp;该语句按照列定义，第一行表示第第一列的属性信息，包括该列的Key是什么，以及能容纳哪些类型的数据，第一行表示Key是<code>product_id</code>，它包含四个字符，且不能为空。接下来6行以此类推。最后一行表示整个表的约束。</p>
+<h2 id="5-3-命名规则"><a href="#5-3-命名规则" class="headerlink" title="5.3 命名规则"></a>5.3 命名规则</h2><p>&ensp;&ensp;&ensp;&ensp;<b>我们只能使用半角英文字母、数字、下划线(_)作为数据库、表和列的名称。且名称必须以半角英文字母开头。</b>在同一个数据库中不能创建名称相同的表，也不能在同一个表中创建名称相同的列。</p>
+<h2 id="5-4-数据类型的指定"><a href="#5-4-数据类型的指定" class="headerlink" title="5.4 数据类型的指定"></a>5.4 数据类型的指定</h2><p>&ensp;&ensp;&ensp;&ensp;所有列都必须指定数据类型。数据类型表示数据的种类，包括<b>数字型、字符型、日期型</b>等。<br>&ensp;&ensp;&ensp;&ensp;数据类型主要有四种：</p>
+<h3 id="5-4-1-INTEGER型"><a href="#5-4-1-INTEGER型" class="headerlink" title="5.4.1 INTEGER型"></a>5.4.1 INTEGER型</h3><p>&ensp;&ensp;&ensp;&ensp;用来指定存储整数的列的数据类型（数字型），不能存储小数。</p>
+<h3 id="5-4-2-CHAR型"><a href="#5-4-2-CHAR型" class="headerlink" title="5.4.2 CHAR型"></a>5.4.2 CHAR型</h3><p>&ensp;&ensp;&ensp;&ensp;CHAR是CHARACTER（字符）的缩写，用来指定存储字符串的列的数据类型（字符型）。可以像CHAT(10)或者CHAR(200)这样，在括号中指定该列可以存储的字符串的长度（最大长度），当输入字符数超过最大长度时无法输入到该列中。<br>&ensp;&ensp;&ensp;&ensp;字符串以<b>定长字符串</b>的形式存储在被指定为CHAR型的列中。如用CHAR(8)存储<code>&#39;abc&#39;</code>，则实际存储的是<code>&#39;abc_ _ _ _ _&#39;</code>。且在列中，’abc’与’ABC’是不同意义的字符串。</p>
+<h3 id="5-4-3-VARCHAR型"><a href="#5-4-3-VARCHAR型" class="headerlink" title="5.4.3 VARCHAR型"></a>5.4.3 VARCHAR型</h3><p>&ensp;&ensp;&ensp;&ensp;同CHAR一样用来存储字符串列的数据类型（字符串类型），也可以通过在括号内控制长度。该类型的列是<b>可变长字符串</b>的形式来保存字符串的。如果输入字符未达到定长时，VARCHAR不会自动补充空格，即VARCHAR(8)输入一列’abc’，则存储时也为’abc’，不会像CHAR一样自动填充空格。</p>
+<h3 id="5-4-4-DATE型"><a href="#5-4-4-DATE型" class="headerlink" title="5.4.4 DATE型"></a>5.4.4 DATE型</h3><p>&ensp;&ensp;&ensp;&ensp;用来指定存储日期（年月日）的列的数据类型（日期型）。</p>
+<h2 id="5-5-约束的设置"><a href="#5-5-约束的设置" class="headerlink" title="5.5 约束的设置"></a>5.5 约束的设置</h2><p>&ensp;&ensp;&ensp;&ensp;约束是指除了数据类型约束以外的对存储数据进行限制或追加条件的功能。之前的表中定义了两个约束，<code>NOT NULL</code>表示该列为必填项，不能为空；此外最后一行还有<code>PRIMARY KEY (product_id)</code>，这是用来给<code>product_id</code>设置<b>主键约束</b>的。所谓<b>键</b>，就是指在特定数据时使用的列的组合。将<code>product_id</code>设置为<b>主键</b>意味着可以通过该列取出特定的商品数据了，所以主键的数据一定唯一，否则无法读取特定的一行。</p>
+<h1 id="6-表的删除和更新"><a href="#6-表的删除和更新" class="headerlink" title="6.表的删除和更新"></a>6.表的删除和更新</h1><h2 id="6-1-表的删除（DROP-TABLE语句）"><a href="#6-1-表的删除（DROP-TABLE语句）" class="headerlink" title="6.1 表的删除（DROP TABLE语句）"></a>6.1 表的删除（DROP TABLE语句）</h2><p>&ensp;&ensp;&ensp;&ensp;删除整张表只需要一个命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLE &lt;表名&gt;;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;需要注意的是，<b>删除的表是无法恢复的</b>。</p>
+<h2 id="6-2-表定义的更新（ALTER-TABLE语句）"><a href="#6-2-表定义的更新（ALTER-TABLE语句）" class="headerlink" title="6.2 表定义的更新（ALTER TABLE语句）"></a>6.2 表定义的更新（ALTER TABLE语句）</h2><p>&ensp;&ensp;&ensp;&ensp;需要在已经创建好的表中修改结构时，需要用到<b>ALTER TABLE</b>。如需要添加列，则只需要下列语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE &lt;表名&gt; ADD COLUMN &lt;列名&gt;;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;例如为product添加拼音列：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE &lt;Product&gt; ADD COLUMN product_name_pinyin VARCHAR(100);</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;在VARCHAR(80)后面还可以添加其他约束信息。<br>&ensp;&ensp;&ensp;&ensp;删除表中某列使用如下方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE &lt;表名&gt; DROP COLUMN &lt;列名&gt;;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;例如，删除之前表中添加的拼音列：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE Product DROP COLUMN product_name_pinyin;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;需要注意的是，<b>表变更后无法恢复</b>，执行ALTER TABLE语句需要格外注意。</p>
+<h2 id="6-3-向Product表中插入数据"><a href="#6-3-向Product表中插入数据" class="headerlink" title="6.3 向Product表中插入数据"></a>6.3 向Product表中插入数据</h2><p>&ensp;&ensp;&ensp;&ensp;创建完成表后，需要向表中添加数据，语句如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">BEGIN TRANSACTION;</span><br><span class="line"></span><br><span class="line">INSERT INTO Product VALUES (&#39;0001&#39;, &#39;T恤衫&#39;, &#39;衣服&#39;, 1000, 500, &#39;2009-09-20&#39;);</span><br><span class="line">INSERT INTO Product VALUES (&#39;0002&#39;, &#39;打孔器&#39;, &#39;办公用品&#39;, 500, 320, &#39;2009-09-20&#39;);</span><br><span class="line">INSERT INTO Product VALUES (&#39;0003&#39;, &#39;运动T恤&#39;, &#39;衣服&#39;, 4000, 2800, &#39;2009-09-20&#39;);</span><br><span class="line">INSERT INTO Product VALUES (&#39;0004&#39;, &#39;菜刀&#39;, &#39;厨房用品&#39;, 3000, 2800, &#39;2009-09-20&#39;);</span><br><span class="line">INSERT INTO Product VALUES (&#39;0005&#39;, &#39;高压锅&#39;, &#39;厨房用品&#39;, 6800, 5000, &#39;2009-09-20&#39;);</span><br><span class="line">INSERT INTO Product VALUES (&#39;0006&#39;, &#39;叉子&#39;, &#39;厨房用品&#39;, 500, NULL, &#39;2009-09-20&#39;);</span><br><span class="line">INSERT INTO Product VALUES (&#39;0007&#39;, &#39;擦菜板&#39;, &#39;厨房用品&#39;, 880, 790, &#39;2009-09-20&#39;);</span><br><span class="line">INSERT INTO Product VALUES (&#39;0008&#39;, &#39;圆珠笔&#39;, &#39;办公用品&#39;, 100, NULL, &#39;2009-09-20&#39;);</span><br><span class="line"></span><br><span class="line">COMMIT;</span><br></pre></td></tr></table></figure>
+
+<p>&ensp;&ensp;&ensp;&ensp;使用插入行语句<code>INSERT</code>就可以把数据插入到表中，开头的<code>BEGIN TRANSACTION;</code>是开始插入的意思，结尾的<code>COMMIT</code>是确定插入行的指令语句。</p>
+<p>&ensp;&ensp;&ensp;&ensp;<b>专栏</b><br>&ensp;&ensp;&ensp;&ensp;如果需要更改表名时，则使用下列命令即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE Product RENAME TO Product1；</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;&ensp;&ensp;意思是将Product重命名为Product1。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/DB/" rel="tag"># DB</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/23/%E5%85%A5%E9%97%A8%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%E5%85%A5%E9%97%A8%E6%A8%A1%E6%8B%9F/" rel="prev" title="入门篇（一）——入门模拟">
+      <i class="fa fa-chevron-left"></i> 入门篇（一）——入门模拟
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库"><span class="nav-number">1.</span> <span class="nav-text">数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-数据库"><span class="nav-number">1.1.</span> <span class="nav-text">1.数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-数据库管理系统（DBMS）的种类"><span class="nav-number">1.2.</span> <span class="nav-text">2.数据库管理系统（DBMS）的种类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-层次数据库（Hierarchical，HDB）"><span class="nav-number">1.3.</span> <span class="nav-text">2.1 层次数据库（Hierarchical，HDB）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-关系数据库（Relational-Database，RDB）"><span class="nav-number">1.4.</span> <span class="nav-text">2.2 关系数据库（Relational Database，RDB）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-面向对象数据库（Object-Oriented-Database，OODB）"><span class="nav-number">1.5.</span> <span class="nav-text">2.3 面向对象数据库（Object Oriented Database，OODB）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-XML数据库（XML-Database，XMLDB）"><span class="nav-number">1.6.</span> <span class="nav-text">2.4 XML数据库（XML Database，XMLDB）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-键值存储系统（Key-Value-Store，KVS）"><span class="nav-number">1.7.</span> <span class="nav-text">2.5 键值存储系统（Key-Value Store，KVS）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-表的结构"><span class="nav-number">2.</span> <span class="nav-text">3.表的结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-SQL概要"><span class="nav-number">3.</span> <span class="nav-text">4. SQL概要</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-SQL语句及其种类"><span class="nav-number">3.1.</span> <span class="nav-text">4.1 SQL语句及其种类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-SQL的基本书写规则"><span class="nav-number">3.2.</span> <span class="nav-text">4.2 SQL的基本书写规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL语句要以分号-结尾"><span class="nav-number">3.2.1.</span> <span class="nav-text">SQL语句要以分号(;)结尾</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL语句不区分大小写"><span class="nav-number">3.2.2.</span> <span class="nav-text">SQL语句不区分大小写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常数的书写方式是固定的"><span class="nav-number">3.2.3.</span> <span class="nav-text">常数的书写方式是固定的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单词需要用半角空格或者换行来分隔"><span class="nav-number">3.2.4.</span> <span class="nav-text">单词需要用半角空格或者换行来分隔</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-表的创建"><span class="nav-number">4.</span> <span class="nav-text">5.表的创建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-数据库的创建"><span class="nav-number">4.1.</span> <span class="nav-text">5.1 数据库的创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-表的创建"><span class="nav-number">4.2.</span> <span class="nav-text">5.2 表的创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-命名规则"><span class="nav-number">4.3.</span> <span class="nav-text">5.3 命名规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-数据类型的指定"><span class="nav-number">4.4.</span> <span class="nav-text">5.4 数据类型的指定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-1-INTEGER型"><span class="nav-number">4.4.1.</span> <span class="nav-text">5.4.1 INTEGER型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-2-CHAR型"><span class="nav-number">4.4.2.</span> <span class="nav-text">5.4.2 CHAR型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-3-VARCHAR型"><span class="nav-number">4.4.3.</span> <span class="nav-text">5.4.3 VARCHAR型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-4-DATE型"><span class="nav-number">4.4.4.</span> <span class="nav-text">5.4.4 DATE型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-5-约束的设置"><span class="nav-number">4.5.</span> <span class="nav-text">5.5 约束的设置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-表的删除和更新"><span class="nav-number">5.</span> <span class="nav-text">6.表的删除和更新</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-表的删除（DROP-TABLE语句）"><span class="nav-number">5.1.</span> <span class="nav-text">6.1 表的删除（DROP TABLE语句）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-表定义的更新（ALTER-TABLE语句）"><span class="nav-number">5.2.</span> <span class="nav-text">6.2 表定义的更新（ALTER TABLE语句）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-向Product表中插入数据"><span class="nav-number">5.3.</span> <span class="nav-text">6.3 向Product表中插入数据</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Reznov Lee</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Reznov Lee</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
