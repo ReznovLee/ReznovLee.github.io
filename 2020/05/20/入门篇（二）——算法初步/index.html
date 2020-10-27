@@ -27,14 +27,16 @@
 <meta property="og:site_name" content="Reznov Lee">
 <meta property="og:description" content="1.排序">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/05/20/%E5%85%A5%E9%97%A8%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E7%AE%97%E6%B3%95%E5%88%9D%E6%AD%A5/SelectSort.gif">
 <meta property="og:image" content="http://latex.codecogs.com/gif.latex?1%5Cleqslant%7Bi%7D%5Cleqslant%7Bn%7D">
 <meta property="og:image" content="http://latex.codecogs.com/gif.latex?n%5E2">
+<meta property="og:image" content="http://yoursite.com/2020/05/20/%E5%85%A5%E9%97%A8%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E7%AE%97%E6%B3%95%E5%88%9D%E6%AD%A5/InsertSort.gif">
 <meta property="article:published_time" content="2020-05-20T11:55:11.000Z">
-<meta property="article:modified_time" content="2020-05-20T12:21:26.960Z">
+<meta property="article:modified_time" content="2020-10-27T14:41:47.723Z">
 <meta property="article:author" content="Reznov Lee">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://latex.codecogs.com/gif.latex?1%5Cleqslant%7Bi%7D%5Cleqslant%7Bn%7D">
+<meta name="twitter:image" content="http://yoursite.com/2020/05/20/%E5%85%A5%E9%97%A8%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E7%AE%97%E6%B3%95%E5%88%9D%E6%AD%A5/SelectSort.gif">
 
 <link rel="canonical" href="http://yoursite.com/2020/05/20/%E5%85%A5%E9%97%A8%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E7%AE%97%E6%B3%95%E5%88%9D%E6%AD%A5/">
 
@@ -186,10 +188,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-05-20 19:55:11 / Modified: 20:21:26" itemprop="dateCreated datePublished" datetime="2020-05-20T19:55:11+08:00">2020-05-20</time>
+              <time title="Created: 2020-05-20 19:55:11" itemprop="dateCreated datePublished" datetime="2020-05-20T19:55:11+08:00">2020-05-20</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-10-27 22:41:47" itemprop="dateModified" datetime="2020-10-27T22:41:47+08:00">2020-10-27</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -213,8 +221,13 @@
       
         <h1 id="1-排序"><a href="#1-排序" class="headerlink" title="1.排序"></a>1.排序</h1><a id="more"></a>
 
-<h2 id="1-1-选择排序"><a href="#1-1-选择排序" class="headerlink" title="1.1 选择排序"></a>1.1 选择排序</h2><p>&ensp;&ensp;&ensp;&ensp;选择排序是最简单的排序算法之一。简单排序算法是指，对一个序列A中的元素<code>A[1]~A[n]</code>，令<code>i</code>从1到n枚举，进行n趟操作，每趟从待排序部分<code>[i,n]</code>中选择最小元素，令其与待排序部分的第一个元素<code>A[i]</code>交换，这样元素<code>A[i]</code>就与当前有序区间<code>[1,i-1]</code>形成新的有序区间<code>[1,i]</code>。于是在n趟操作后所有元素就是有序的。<br>&ensp;&ensp;&ensp;&ensp;算法实现逻辑如下：总共需要进行n趟操作（<img src="http://latex.codecogs.com/gif.latex?1%5Cleqslant%7Bi%7D%5Cleqslant%7Bn%7D" alt>)），每趟操作选出待排序部分<code>[i,n]</code>中最小的元素，令其与<code>A[i]</code>交换。因此总复杂度为O(<img src="http://latex.codecogs.com/gif.latex?n%5E2" alt>))。代码如下：</p>
+<h2 id="1-1-选择排序"><a href="#1-1-选择排序" class="headerlink" title="1.1 选择排序"></a>1.1 选择排序</h2><p>&ensp;&ensp;&ensp;&ensp;选择排序是最简单的排序算法之一。简单排序算法是指，对一个序列A中的元素<code>A[1]~A[n]</code>，令<code>i</code>从1到n枚举，进行n趟操作，每趟从待排序部分<code>[i,n]</code>中选择最小元素，令其与待排序部分的第一个元素<code>A[i]</code>交换，这样元素<code>A[i]</code>就与当前有序区间<code>[1,i-1]</code>形成新的有序区间<code>[1,i]</code>。于是在n趟操作后所有元素就是有序的。<br><img src="./SelectSort.gif" alt><br>&ensp;&ensp;&ensp;&ensp;算法实现逻辑如下：总共需要进行n趟操作（<img src="http://latex.codecogs.com/gif.latex?1%5Cleqslant%7Bi%7D%5Cleqslant%7Bn%7D" alt>)），每趟操作选出待排序部分<code>[i,n]</code>中最小的元素，令其与<code>A[i]</code>交换。因此总复杂度为O(<img src="http://latex.codecogs.com/gif.latex?n%5E2" alt>))。代码如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">void selectSort() &#123;</span><br><span class="line">    for(int i &#x3D; 1; i &lt;&#x3D; n; i++) &#123;    &#x2F;&#x2F;进行n趟操作</span><br><span class="line">        int k &#x3D; i;</span><br><span class="line">        for(int j &#x3D; i; j &lt;&#x3D; n; j++) &#123;    &#x2F;&#x2F;选出[i,n]中最小的元素，小标为k</span><br><span class="line">            if(A[j] &lt; A[k]) &#123;</span><br><span class="line">                k &#x3D; j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        int temp &#x3D; A[i];    &#x2F;&#x2F;交换A[k]与A[i]</span><br><span class="line">        A[i] &#x3D; A[k];</span><br><span class="line">        A[k] &#x3D; temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-2-插入排序"><a href="#1-2-插入排序" class="headerlink" title="1.2 插入排序"></a>1.2 插入排序</h2><p>&ensp;&ensp;&ensp;&ensp;<strong>直接插入排序</strong>是指，对序列A的n个元素<code>A[1]~A[n]</code>，令<code>i</code>从2到n枚举，进行<code>n-1</code>趟操作，假设某一趟时序列A的前<code>i-1</code>个元素<code>A[1]~A[i-1]</code>已经有序，而范围<code>[i,n]</code>还未有序，那么该趟从范围<code>[1,i-1]</code>中寻找某个位置j，使得将<code>A[i]</code>插入位置<code>j</code>后（此时<code>A[j]~A[i-1]</code>会<strong>后移一位</strong>至<code>A[j+1]~A[i]</code>），范围<code>[1,i]</code>有序。<br><img src="./InsertSort.gif" alt><br>&ensp;&ensp;&ensp;&ensp;假设现在有一个序列<code>A[1~6]={5,2,4,6,3,1}</code>，共有六个元素，因此需要进行6-1=5趟操作，用以分别将<code>2,4,6,3,1</code>插入已有序部分<code>{5}</code>中。<br>&ensp;&ensp;&ensp;&ensp;① 第一趟，当前已有序部分为<code>{5}</code>需要把元素<code>A[2]=2</code>插入已有序部分中。显然插入位置为2号位，插入后已有序部分为<code>{2,5}</code>。<br>&ensp;&ensp;&ensp;&ensp;② 第二趟，当前已有序部分为<code>{2,5}</code>需要把元素<code>A[3]=4</code>插入已有序部分中。显然插入位置为2号位，插入后已有序部分为<code>{2,4,5}</code>。<br>&ensp;&ensp;&ensp;&ensp;③ 第三趟，当前已有序部分为<code>{2,4,5}</code>需要把元素<code>A[4]=6</code>插入已有序部分中。显然插入位置为4号位（元素5后面，此时不需要改动元素），插入后已有序部分为<code>{2,4,5,6}</code>。<br>&ensp;&ensp;&ensp;&ensp;④； 第四趟，当前已有序部分为<code>{2,4,5,6}</code>需要把元素<code>A[5]=3</code>插入已有序部分中。显然插入位置为2号位，插入后已有序部分为<code>{2,3,4,5,6}</code>。<br>&ensp;&ensp;&ensp;&ensp;⑤ 第五趟，当前已有序部分为<code>{2,3,4,5,6}</code>需要把元素<code>A[6]=1</code>插入已有序部分中。显然插入位置为1号位，插入后已有序部分为<code>{1,2,3,4,5,6}</code>。至此五趟操作完毕，算法结束。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">int A[maxn], n;     &#x2F;&#x2F;n为元素个数，数组下标为1~n</span><br><span class="line">void insertSort() &#123;</span><br><span class="line">    for(int i &#x3D; 2; i &lt;&#x3D; n; i++&gt;) &#123;      &#x2F;&#x2F;进行n-1趟排序</span><br><span class="line">        int temp &#x3D; A[i] j &#x3D; i;      &#x2F;&#x2F;temp临时存放A[i],j从i开始往前枚举</span><br><span class="line">        while(j &gt; 1 &amp;&amp; temp &lt; A[j - 1]) &#123;       &#x2F;&#x2F;只要temp小于前一个元素A[j-1]</span><br><span class="line">            A[j] &#x3D; A[j - 1];        &#x2F;&#x2F;把A[j-1]后移一位至A[j]</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        A[j] &#x3D; temp;        &#x2F;&#x2F;插入位置为j</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&ensp;&ensp;&ensp;&ensp;<br>&ensp;&ensp;&ensp;&ensp;<br>&ensp;&ensp;&ensp;&ensp;</p>
 
     </div>
 
@@ -298,7 +311,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-排序"><span class="nav-number">1.</span> <span class="nav-text">1.排序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-选择排序"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 选择排序</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-排序"><span class="nav-number">1.</span> <span class="nav-text">1.排序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-选择排序"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 选择排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-插入排序"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 插入排序</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
