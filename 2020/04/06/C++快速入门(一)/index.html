@@ -40,17 +40,17 @@
 <meta property="og:image" content="http://latex.codecogs.com/gif.latex?10%5E%7B10%7D">
 <meta property="og:image" content="http://latex.codecogs.com/gif.latex?10%5E%7B18%7D">
 <meta property="og:image" content="http://latex.codecogs.com/gif.latex?2%5E%7B31%7D-1">
-<meta property="og:image" content="http://latex.codecogs.com/gif.latex?$0%5Csim2%5E%7B32%7D-1$">
-<meta property="og:image" content="http://latex.codecogs.com/gif.latex?$0%5Csim2%5E%7B64%7D-1$">
-<meta property="og:image" content="http://latex.codecogs.com/gif.latex?$10%5E9$">
-<meta property="og:image" content="http://latex.codecogs.com/gif.latex?$10%5E%7B18%7D$">
-<meta property="og:image" content="http://latex.codecogs.com/gif.latex?$-2%5E%7B128%7D%5Csim+2%5E%7B128%7D$">
-<meta property="og:image" content="http://latex.codecogs.com/gif.latex?$-2%5E%7B1024%7D%5Csim+2%5E%7B1024%7D$">
+<meta property="og:image" content="http://latex.codecogs.com/gif.latex?0%5Csim2%5E%7B32%7D-1">
+<meta property="og:image" content="http://latex.codecogs.com/gif.latex?0%5Csim2%5E%7B64%7D-1">
+<meta property="og:image" content="http://latex.codecogs.com/gif.latex?10%5E9">
+<meta property="og:image" content="http://latex.codecogs.com/gif.latex?10%5E%7B18%7D">
+<meta property="og:image" content="http://latex.codecogs.com/gif.latex?-2%5E%7B128%7D%5Csim+2%5E%7B128%7D">
+<meta property="og:image" content="http://latex.codecogs.com/gif.latex?-2%5E%7B1024%7D%5Csim+2%5E%7B1024%7D">
 <meta property="og:image" content="http://latex.codecogs.com/gif.latex?2%5E%7B31%7D-1">
 <meta property="og:image" content="http://latex.codecogs.com/gif.latex?2%5E%7B30%7D-1">
 <meta property="og:image" content="http://latex.codecogs.com/gif.latex?2%5E%7B31%7D-1">
 <meta property="article:published_time" content="2020-04-06T12:31:42.000Z">
-<meta property="article:modified_time" content="2020-04-14T09:37:09.983Z">
+<meta property="article:modified_time" content="2020-11-02T09:03:54.440Z">
 <meta property="article:author" content="Reznov Lee">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta name="twitter:card" content="summary">
@@ -214,7 +214,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-14 17:37:09" itemprop="dateModified" datetime="2020-04-14T17:37:09+08:00">2020-04-14</time>
+                <time title="Modified: 2020-11-02 17:03:54" itemprop="dateModified" datetime="2020-11-02T17:03:54+08:00">2020-11-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -296,13 +296,13 @@
 <blockquote>
 <p>&ensp;&ensp;注意，如果long long型赋值大于<img src="http://latex.codecogs.com/gif.latex?2%5E%7B31%7D-1" alt>时，需要在数后加”LL”后缀。</p>
 </blockquote>
-<p>&ensp;&ensp;&ensp;&ensp;此外，无符号整型（unsigned）占用字节数与原类型一致，只是将取值范围扩大到之前正数部分的2倍。unsigned int取值范围是<img src="http://latex.codecogs.com/gif.latex?$0%5Csim2%5E%7B32%7D-1$" alt>，unsigned long long取值范围是<img src="http://latex.codecogs.com/gif.latex?$0%5Csim2%5E%7B64%7D-1$" alt>。<br>　　简单来说，<b>如果数字在<img src="http://latex.codecogs.com/gif.latex?$10%5E9$" alt>)以内或者32位整数，就使用int型来存放；如果数字在<img src="http://latex.codecogs.com/gif.latex?$10%5E%7B18%7D$" alt>以内或者64位整数，就使用long long来存放</b>。</p>
+<p>&ensp;&ensp;&ensp;&ensp;此外，无符号整型（unsigned）占用字节数与原类型一致，只是将取值范围扩大到之前正数部分的2倍。unsigned int取值范围是<img src="http://latex.codecogs.com/gif.latex?0%5Csim2%5E%7B32%7D-1" alt>，unsigned long long取值范围是<img src="http://latex.codecogs.com/gif.latex?0%5Csim2%5E%7B64%7D-1" alt>。<br>　　简单来说，<b>如果数字在<img src="http://latex.codecogs.com/gif.latex?10%5E9" alt>)以内或者32位整数，就使用int型来存放；如果数字在<img src="http://latex.codecogs.com/gif.latex?10%5E%7B18%7D" alt>以内或者64位整数，就使用long long来存放</b>。</p>
 <blockquote>
 <p>&ensp;&ensp;%d是int型的输出格式，%f是float和double型的输出格式。</p>
 </blockquote>
-<h3 id="1-2-2-浮点型"><a href="#1-2-2-浮点型" class="headerlink" title="1.2.2 浮点型"></a>1.2.2 浮点型</h3><p>&ensp;&ensp;&ensp;&ensp;浮点数就是小数，其中浮点型分为单精度（float）和双精度（double）。<br>　　①对于<b>单精度float</b>来说，一个浮点数占用32bit（即32比特），其中1bit为符号位，8bit为指数位，23位为尾数位，可以存放的数范围是<img src="http://latex.codecogs.com/gif.latex?$-2%5E%7B128%7D%5Csim+2%5E%7B128%7D$" alt>，但精度只有<b>6~7</b>位。</p>
+<h3 id="1-2-2-浮点型"><a href="#1-2-2-浮点型" class="headerlink" title="1.2.2 浮点型"></a>1.2.2 浮点型</h3><p>&ensp;&ensp;&ensp;&ensp;浮点数就是小数，其中浮点型分为单精度（float）和双精度（double）。<br>　　①对于<b>单精度float</b>来说，一个浮点数占用32bit（即32比特），其中1bit为符号位，8bit为指数位，23位为尾数位，可以存放的数范围是<img src="http://latex.codecogs.com/gif.latex?-2%5E%7B128%7D%5Csim+2%5E%7B128%7D" alt>，但精度只有<b>6~7</b>位。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">float fl;</span><br><span class="line">float fl &#x3D; 3.1415;</span><br></pre></td></tr></table></figure>
-<p>&ensp;&ensp;&ensp;&ensp;②对于<b>双精度double</b>来说，一个浮点数占用64bit（即64比特），其中1bit为符号位，11bit为指数位，52位为尾数位，可以存放的数范围是<img src="http://latex.codecogs.com/gif.latex?$-2%5E%7B1024%7D%5Csim+2%5E%7B1024%7D$" alt>，精度为<b>15~16</b>位。</p>
+<p>&ensp;&ensp;&ensp;&ensp;②对于<b>双精度double</b>来说，一个浮点数占用64bit（即64比特），其中1bit为符号位，11bit为指数位，52位为尾数位，可以存放的数范围是<img src="http://latex.codecogs.com/gif.latex?-2%5E%7B1024%7D%5Csim+2%5E%7B1024%7D" alt>，精度为<b>15~16</b>位。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">double db;</span><br><span class="line">double db &#x3D; 3.1415926536;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>&ensp;&ensp;<b>尽量不要用float，在需要处理浮点数时尽量使用double储存。</b></p>
@@ -355,10 +355,10 @@
         <td>a > b</td>
     </tr>
     <tr>
-        <td><=< td>
-        <td>小于等于</td>
-        <td>a <= b< td>
-    </=></td></=<></td></tr>
+        <td> < = </td>
+        <td> 小于等于 </td>
+        <td> a < = b </td>
+    </tr>
     <tr>
         <td>>=</td>
         <td>大于等于</td>
