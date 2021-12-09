@@ -32,7 +32,11 @@
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
   
-<meta name="generator" content="Hexo 5.4.0"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
 
 <body>
   <div id="container">
@@ -93,7 +97,8 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id=""><a href="#" class="headerlink" title=""></a></h1><p>概念与术语</p>
+        <h1 id="section"></h1>
+<p>概念与术语</p>
 <p>强化学习的主要角色是<strong>智能体</strong>和<strong>环境</strong>,环境是智能体存在和互动的世界。智能体在每一步的交互中，都会获得对于所处环境状态的观察（有可能只是一部分），然后决定下一步要执行的动作。环境会因为智能体对它的动作而改变，也可能自己改变。</p>
 <p>智能体也会从环境中感知到<strong>奖励</strong>信号，一个表明当前状态好坏的数字。智能体的目标是最大化累计奖励，也就是<strong>回报</strong>。强化学习就是智能体通过学习来完成目标的方法。</p>
 <p>为了便于后面的学习，我们介绍一些术语：</p>
@@ -106,136 +111,153 @@
 <li>强化学习优化问题(the RL optimization problem)</li>
 <li>值函数(value functions)</li>
 </ul>
-<h2 id="-1"><a href="#-1" class="headerlink" title=""></a></h2><p>状态和观察</p>
-<p>一个<strong>状态</strong>$s$是一个关于这个世界状态的完整描述。这个世界除了状态以外没有别的信息。<strong>观察</strong>$o$是对于一个状态的部分描述，可能会漏掉一些信息。</p>
+<h2 id="section-1"></h2>
+<p>状态和观察</p>
+<p>一个<strong>状态</strong><span class="math inline">\(s\)</span>是一个关于这个世界状态的完整描述。这个世界除了状态以外没有别的信息。<strong>观察</strong><span class="math inline">\(o\)</span>是对于一个状态的部分描述，可能会漏掉一些信息。</p>
 <p>在深度强化学习中，我们一般用<font color="blue">实数向量</font>、<font color="blue">矩阵</font>或者<font color="blue">更高阶的张量（tensor）</font>表示状态和观察。比如说，视觉上的<strong>观察</strong>可以用RGB矩阵的方式表示其像素值；机器人的<strong>状态</strong>可以通过关节角度和速度来表示。</p>
 <p>如果智能体观察到环境的全部状态，我们通常说环境是被 全面观察 的。如果智能体只能观察到一部分，我们称之为 部分观察。</p>
-<h2 id="-2"><a href="#-2" class="headerlink" title=""></a></h2><p>动作空间</p>
+<h2 id="section-2"></h2>
+<p>动作空间</p>
 <p>不同的环境有不同的动作。所有有效动作的集合称之为<strong>动作空间</strong>。有些环境，比如说 Atari 游戏和围棋，属于<strong>离散动作空间</strong>，这种情况下智能体只能采取有限的动作。其他的一些环境，比如智能体在物理世界中控制机器人，属于<strong>连续动作空间</strong>。在连续动作空间中，动作是实数向量。</p>
 <p>这种区别对于深度强化学习来说，影响深远。有些种类的算法只能直接用在某些案例上，如果需要用在别的地方，可能就需要大量重写代码。</p>
-<h2 id="-3"><a href="#-3" class="headerlink" title=""></a></h2><p>策略</p>
-<p><strong>策略</strong>是智能体用于决定下一步执行什么行动的规则。可以是确定性的，一般表示为：$\mu$:</p>
-<p>$$a_t = \mu(s_t),$$</p>
-<p>也可以是随机的，一般表示为$\pi$:</p>
-<p>$$a_t \sim \pi(\cdot | s_t).$$</p>
+<h2 id="section-3"></h2>
+<p>策略</p>
+<p><strong>策略</strong>是智能体用于决定下一步执行什么行动的规则。可以是确定性的，一般表示为：<span class="math inline">\(\mu\)</span>:</p>
+<p><span class="math display">\[a_t = \mu(s_t),\]</span></p>
+<p>也可以是随机的，一般表示为<span class="math inline">\(\pi\)</span>:</p>
+<p><span class="math display">\[a_t \sim \pi(\cdot | s_t).\]</span></p>
 <p>因为策略本质上就是智能体的大脑，所以很多时候“策略”和“智能体”这两个名词经常互换，例如我们会说：“策略的目的是最大化奖励”。</p>
 <p>在深度强化学习中，我们处理的是参数化的策略，这些策略的输出，依赖于一系列计算函数，而这些函数又依赖于参数（例如神经网络的权重和误差），所以我们可以通过一些优化算法改变智能体的的行为。</p>
-<p>我们经常把这些策略的参数写作$\theta$或者$\phi$，然后把它写在策略的下标上来强调两者的联系。</p>
-<p>$$a_t = \mu_{\theta}(s_t) \$$<br>$$a_t \sim \pi_{\theta}(\cdot | s_t).$$</p>
-<h2 id="-4"><a href="#-4" class="headerlink" title=""></a></h2><p>确定性策略</p>
+<p>我们经常把这些策略的参数写作<span class="math inline">\(\theta\)</span>或者<span class="math inline">\(\phi\)</span>，然后把它写在策略的下标上来强调两者的联系。</p>
+<p><span class="math display">\[a_t = \mu_{\theta}(s_t) \\\]</span> <span class="math display">\[a_t \sim \pi_{\theta}(\cdot | s_t).\]</span></p>
+<h2 id="section-4"></h2>
+<p>确定性策略</p>
 <p><strong>例子：确定性策略</strong>：这是一个基于 TensorFlow 在连续动作空间上确定性策略的简单例子：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">obs = tf.placeholder(shape=(<span class="literal">None</span>, obs_dim), dtype=tf.float32)</span><br><span class="line">net = mlp(obs, hidden_dims=(<span class="number">64</span>,<span class="number">64</span>), activation=tf.tanh)</span><br><span class="line">actions = tf.layers.dense(net, units=act_dim, activation=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
-
 <p>其中，<em>mlp</em> 是把多个给定大小和激活函数的 <em>密集层</em>（dense layer）相互堆积在一起的函数。</p>
-<h2 id="-5"><a href="#-5" class="headerlink" title=""></a></h2><p>随机性策略</p>
+<h2 id="section-5"></h2>
+<p>随机性策略</p>
 <p>深度强化学习中最常见的两种随机策略是<strong>绝对策略</strong>(Categorical Policies) 和<strong>对角高斯策略</strong>(Diagonal Gaussian Policies)。</p>
 <p><font color="blue">绝对</font>策略适用于离散行动空间，而<font color="blue">高斯</font>策略一般用在连续行动空间</p>
 <p>使用和训练随机策略的时候有两个重要的计算：</p>
 <ul>
 <li>从策略中采样行动</li>
-<li>计算特定行为的似然(likelihoods) $\log \pi_{\theta}(a|s)$。<br>下面我们介绍一下这两种策略</li>
+<li>计算特定行为的似然(likelihoods) <span class="math inline">\(\log \pi_{\theta}(a|s)\)</span>。 下面我们介绍一下这两种策略</li>
 </ul>
 <blockquote>
-<p><strong>绝对策略</strong><br>绝对策略就像是一个离散空间的分类器(classifier)。对于分类器和确定策略来说，建立神经网络的方式一模一样：输入是观察，接着是一些卷积、全连接层之类的，至于具体是哪些取决于输入的类型，最后一个线性层给出每个行动的 log 数值(logits)，后面跟一个 softmax 层把 log 数值转换为可能性。<br><strong>采样</strong><br>给定每个行动的可能性，TensorFlow之类的框架有内置采样工。具体可查阅 <a target="_blank" rel="noopener" href="https://www.tensorflow.org/api_docs/python/tf/distributions/Categorical">tf.distributions.Categorical</a> 或 <a target="_blank" rel="noopener" href="https://www.tensorflow.org/api_docs/python/tf/multinomial">tf.multinomial</a> 的文档。<br><strong>对数似然</strong><br>表示最后一层的可能性 $P_{\theta}(s)$。它是一个有很多值的向量，我们可以把行动当做向量的索引。所以向量的对数似然值 $a$ 可以通过这样得到：<br>$$\log \pi_{\theta}(a|s) = \log \left[P_{\theta}(s)\right]_a.$$</p>
+<p><strong>绝对策略</strong> 绝对策略就像是一个离散空间的分类器(classifier)。对于分类器和确定策略来说，建立神经网络的方式一模一样：输入是观察，接着是一些卷积、全连接层之类的，至于具体是哪些取决于输入的类型，最后一个线性层给出每个行动的 log 数值(logits)，后面跟一个 softmax 层把 log 数值转换为可能性。 <strong>采样</strong> 给定每个行动的可能性，TensorFlow之类的框架有内置采样工。具体可查阅 <a target="_blank" rel="noopener" href="https://www.tensorflow.org/api_docs/python/tf/distributions/Categorical">tf.distributions.Categorical</a> 或 <a target="_blank" rel="noopener" href="https://www.tensorflow.org/api_docs/python/tf/multinomial">tf.multinomial</a> 的文档。 <strong>对数似然</strong> 表示最后一层的可能性 <span class="math inline">\(P_{\theta}(s)\)</span>。它是一个有很多值的向量，我们可以把行动当做向量的索引。所以向量的对数似然值 <span class="math inline">\(a\)</span> 可以通过这样得到： <span class="math display">\[\log \pi_{\theta}(a|s) = \log \left[P_{\theta}(s)\right]_a.\]</span></p>
 </blockquote>
 <blockquote>
-<p><strong>对角高斯策略</strong><br>多元高斯分布（或者多元正态分布），可以用一个向量 $\mu$ 和协方差 $\Sigma$ 来描述。对角高斯分布就是协方差矩阵只有对角线上有值的特殊情况，所以我们可以用一个向量来表示它。<br>对角高斯策略总会有一个神经网络，表示观察到行动的映射。其中有两种协方差矩阵的经典表示方式：<br><strong>第一种</strong>：有一个单独的关于对数标准差的向量：$\log \sigma$，它不是关于状态的函数，$\log \sigma$ 而是单独的参数（我们这个项目里，VPG, TRPO 和 PPO 都是用这种方式实现的）。<br><strong>第二种</strong>：有一个神经网络，从状态映射到对数标准差$\log \sigma_{\theta}(s)$。这种方式可能会均值网络共享某些层的参数。<br>要注意这两种情况下我们都没有直接计算标准差而是对数标准差。这是因为对数标准差能够接受 $(-\infty, \infty)$ 的任何值，而标准差必须要求参数非负。要知道，限制条件越少，训练就越简单。而标准差可以通过取幂快速从对数标准差中计算得到，所以这种表示方法也不会丢失信息。<br><strong>采样</strong>：给定平均行动$\mu_{\theta}(s)$和 标准差$\sigma_{\theta}(s)$，以及一个服从球形高斯分布的噪声向量 $z$，行为的样本可以这样计算：<br>$$a = \mu_{\theta}(s) + \sigma_{\theta}(s) \odot z,$$<br>这里 $\odot$ 表示两个向量按元素乘。标准框架都有内置噪声向量实现，例如 <a target="_blank" rel="noopener" href="https://www.tensorflow.org/api_docs/python/tf/random_normal">tf.random_normal</a> 。你也可以直接用 <a target="_blank" rel="noopener" href="https://www.tensorflow.org/api_docs/python/tf/distributions/Normal">tf.distributions.Normal</a> 以均值和标准差的方式采样。<br><strong>对数似然</strong><br>一个 k 维行动 $a$ 基于均值为 $\mu = \mu_{\theta}(s)$，标准差为 $\sigma = \sigma_{\theta}(s)$ 的对角高斯的对数似然：<br>$$\log \pi_{\theta}(a|s) = -\frac{1}{2}\left(\sum_{i=1}^k \left(\frac{(a_i - \mu_i)^2}{\sigma_i^2} + 2 \log \sigma_i \right) + k \log 2\pi \right).$$</p>
+<p><strong>对角高斯策略</strong> 多元高斯分布（或者多元正态分布），可以用一个向量 <span class="math inline">\(\mu\)</span> 和协方差 <span class="math inline">\(\Sigma\)</span> 来描述。对角高斯分布就是协方差矩阵只有对角线上有值的特殊情况，所以我们可以用一个向量来表示它。 对角高斯策略总会有一个神经网络，表示观察到行动的映射。其中有两种协方差矩阵的经典表示方式： <strong>第一种</strong>：有一个单独的关于对数标准差的向量：<span class="math inline">\(\log \sigma\)</span>，它不是关于状态的函数，<span class="math inline">\(\log \sigma\)</span> 而是单独的参数（我们这个项目里，VPG, TRPO 和 PPO 都是用这种方式实现的）。 <strong>第二种</strong>：有一个神经网络，从状态映射到对数标准差<span class="math inline">\(\log \sigma_{\theta}(s)\)</span>。这种方式可能会均值网络共享某些层的参数。 要注意这两种情况下我们都没有直接计算标准差而是对数标准差。这是因为对数标准差能够接受 <span class="math inline">\((-\infty, \infty)\)</span> 的任何值，而标准差必须要求参数非负。要知道，限制条件越少，训练就越简单。而标准差可以通过取幂快速从对数标准差中计算得到，所以这种表示方法也不会丢失信息。 <strong>采样</strong>：给定平均行动<span class="math inline">\(\mu_{\theta}(s)\)</span>和 标准差<span class="math inline">\(\sigma_{\theta}(s)\)</span>，以及一个服从球形高斯分布的噪声向量 <span class="math inline">\(z\)</span>，行为的样本可以这样计算： <span class="math display">\[a = \mu_{\theta}(s) + \sigma_{\theta}(s) \odot z,\]</span> 这里 <span class="math inline">\(\odot\)</span> 表示两个向量按元素乘。标准框架都有内置噪声向量实现，例如 <a target="_blank" rel="noopener" href="https://www.tensorflow.org/api_docs/python/tf/random_normal">tf.random_normal</a> 。你也可以直接用 <a target="_blank" rel="noopener" href="https://www.tensorflow.org/api_docs/python/tf/distributions/Normal">tf.distributions.Normal</a> 以均值和标准差的方式采样。 <strong>对数似然</strong> 一个 k 维行动 <span class="math inline">\(a\)</span> 基于均值为 <span class="math inline">\(\mu = \mu_{\theta}(s)\)</span>，标准差为 <span class="math inline">\(\sigma = \sigma_{\theta}(s)\)</span> 的对角高斯的对数似然： <span class="math display">\[\log \pi_{\theta}(a|s) = -\frac{1}{2}\left(\sum_{i=1}^k \left(\frac{(a_i - \mu_i)^2}{\sigma_i^2} + 2 \log \sigma_i \right) + k \log 2\pi \right).\]</span></p>
 </blockquote>
-<h2 id="-6"><a href="#-6" class="headerlink" title=""></a></h2><p>运动轨迹</p>
-<p>运动轨迹 $\tau$ 指的是状态和行动的序列。</p>
-<p>$\tau = (s_0, a_0, s_1, a_1, …).$</p>
-<p>第一个状态 $s_0$，是从 <strong>开始状态分布</strong> 中随机采样的，有时候表示为 $\rho_0$ :</p>
-<p>$$s_0 \sim \rho_0(\cdot).$$</p>
-<p>转态转换（从某一状态时间 $t$ , $s_t$ 到另一状态时间 $t+1$ , $s_{t+1}$ 会发生什么），是由环境的自然法则确定的，并且只依赖于最近的行动 $a_t$。它们可以是确定性的：</p>
-<p>$$s_{t+1} = f(s_t, a_t)$$</p>
+<h2 id="section-6"></h2>
+<p>运动轨迹</p>
+<p>运动轨迹 <span class="math inline">\(\tau\)</span> 指的是状态和行动的序列。</p>
+<p><span class="math inline">\(\tau = (s_0, a_0, s_1, a_1, ...).\)</span></p>
+<p>第一个状态 <span class="math inline">\(s_0\)</span>，是从 <strong>开始状态分布</strong> 中随机采样的，有时候表示为 <span class="math inline">\(\rho_0\)</span> :</p>
+<p><span class="math display">\[s_0 \sim \rho_0(\cdot).\]</span></p>
+<p>转态转换（从某一状态时间 <span class="math inline">\(t\)</span> , <span class="math inline">\(s_t\)</span> 到另一状态时间 <span class="math inline">\(t+1\)</span> , <span class="math inline">\(s_{t+1}\)</span> 会发生什么），是由环境的自然法则确定的，并且只依赖于最近的行动 <span class="math inline">\(a_t\)</span>。它们可以是确定性的：</p>
+<p><span class="math display">\[s_{t+1} = f(s_t, a_t)\]</span></p>
 <p>而可以是随机的：</p>
-<p>$$s_{t+1} \sim P(\cdot|s_t, a_t).$$</p>
+<p><span class="math display">\[s_{t+1} \sim P(\cdot|s_t, a_t).\]</span></p>
 <p>智能体的行为由策略确定。</p>
 <blockquote>
-<p>你应该知道<br>行动轨迹常常也被称作 <strong>回合(episodes)</strong> 或者 <strong>rollouts</strong>。</p>
+<p>你应该知道 行动轨迹常常也被称作 <strong>回合(episodes)</strong> 或者 <strong>rollouts</strong>。</p>
 </blockquote>
-<h2 id="-7"><a href="#-7" class="headerlink" title=""></a></h2><p>奖励和回报</p>
-<p>强化学习中，奖励函数 $R$ 非常重要。它由当前状态、已经执行的行动和下一步的状态共同决定。</p>
-<p>$$r_t = R(s_t, a_t, s_{t+1})$$</p>
-<p>有时候这个公式会被改成只依赖当前的状态 $r_t = R(s_t)$，或者状态行动对 $r_t = R(s_t,a_t)$。</p>
-<p>智能体的目标是最大化行动轨迹的累计奖励，这意味着很多事情。我们会把所有的情况表示为 $R(\tau)$，至于具体表示什么，要么可以很清楚的从上下文看出来，要么并不重要。（因为相同的方程式适用于所有情况。）</p>
-<p>$T$ <strong>步累计奖赏</strong>，指的是在一个固定窗口步数 $T$ 内获得的累计奖励：</p>
-<p>$$R(\tau) = \sum_{t=0}^T r_t.$$</p>
-<p>另一种叫做 $\gamma$ <strong>折扣奖励</strong>，指的是智能体获得的全部奖励之和，但是奖励会因为获得的时间不同而衰减。这个公式包含衰减率 $\gamma \in (0,1)$:</p>
-<p>$$R(\tau) = \sum_{t=0}^{\infty} \gamma^t r_t.$$</p>
+<h2 id="section-7"></h2>
+<p>奖励和回报</p>
+<p>强化学习中，奖励函数 <span class="math inline">\(R\)</span> 非常重要。它由当前状态、已经执行的行动和下一步的状态共同决定。</p>
+<p><span class="math display">\[r_t = R(s_t, a_t, s_{t+1})\]</span></p>
+<p>有时候这个公式会被改成只依赖当前的状态 <span class="math inline">\(r_t = R(s_t)\)</span>，或者状态行动对 <span class="math inline">\(r_t = R(s_t,a_t)\)</span>。</p>
+<p>智能体的目标是最大化行动轨迹的累计奖励，这意味着很多事情。我们会把所有的情况表示为 <span class="math inline">\(R(\tau)\)</span>，至于具体表示什么，要么可以很清楚的从上下文看出来，要么并不重要。（因为相同的方程式适用于所有情况。）</p>
+<p><span class="math inline">\(T\)</span> <strong>步累计奖赏</strong>，指的是在一个固定窗口步数 <span class="math inline">\(T\)</span> 内获得的累计奖励：</p>
+<p><span class="math display">\[R(\tau) = \sum_{t=0}^T r_t.\]</span></p>
+<p>另一种叫做 <span class="math inline">\(\gamma\)</span> <strong>折扣奖励</strong>，指的是智能体获得的全部奖励之和，但是奖励会因为获得的时间不同而衰减。这个公式包含衰减率 <span class="math inline">\(\gamma \in (0,1)\)</span>:</p>
+<p><span class="math display">\[R(\tau) = \sum_{t=0}^{\infty} \gamma^t r_t.\]</span></p>
 <p>这里为什么要加上一个衰减率呢？为什么不直接把所有的奖励加在一起？可以从两个角度来解释： 直观上讲，现在的奖励比外来的奖励要好，所以未来的奖励会衰减；数学角度上，无限多个奖励的和很可能 不收敛 ，有了衰减率和适当的约束条件，数值才会收敛。</p>
 <blockquote>
-<p>你应该知道<br>这两个公式看起来差距很大，事实上我们经常会混用。比如说，我们经常使用 $\gamma$ 折扣奖励，但是用衰减率估算 <strong>值函数</strong>。</p>
+<p>你应该知道 这两个公式看起来差距很大，事实上我们经常会混用。比如说，我们经常使用 <span class="math inline">\(\gamma\)</span> 折扣奖励，但是用衰减率估算 <strong>值函数</strong>。</p>
 </blockquote>
-<h2 id="-8"><a href="#-8" class="headerlink" title=""></a></h2><p>强化学习问题</p>
-<p>无论选择哪种方式衡量收益（$T$ 步累计奖赏或者 $\gamma$ 折扣奖励），无论选择哪种策略，强化学习的目标都是选择一种策略从而最大化 <strong>预期收益</strong>。</p>
+<h2 id="section-8"></h2>
+<p>强化学习问题</p>
+<p>无论选择哪种方式衡量收益（<span class="math inline">\(T\)</span> 步累计奖赏或者 <span class="math inline">\(\gamma\)</span> 折扣奖励），无论选择哪种策略，强化学习的目标都是选择一种策略从而最大化 <strong>预期收益</strong>。</p>
 <p>讨论预期收益之前，我们先讨论下行动轨迹的可能性分布。</p>
-<p>我们假设环境转换和策略都是随机的。这种情况下， $T$ 步 行动轨迹是：</p>
-<p>$$P(\tau|\pi) = \rho_0 (s_0) \prod_{t=0}^{T-1} P(s_{t+1} | s_t, a_t) \pi(a_t | s_t).$$</p>
-<p>预期收益是 $J(\pi)$</p>
-<p>$$J(\pi) = \int_{\tau} P(\tau|\pi) R(\tau) = \underE{\tau\sim \pi}{R(\tau)}.$$</p>
+<p>我们假设环境转换和策略都是随机的。这种情况下， <span class="math inline">\(T\)</span> 步 行动轨迹是：</p>
+<p><span class="math display">\[P(\tau|\pi) = \rho_0 (s_0) \prod_{t=0}^{T-1} P(s_{t+1} | s_t, a_t) \pi(a_t | s_t).\]</span></p>
+<p>预期收益是 <span class="math inline">\(J(\pi)\)</span></p>
+<p><span class="math display">\[J(\pi) = \int_{\tau} P(\tau|\pi) R(\tau) = \underE{\tau\sim \pi}{R(\tau)}.\]</span></p>
 <p>强化学习中的核心优化问题可以表示为：</p>
-<p>$$\pi^* = \arg \max_{\pi} J(\pi),$$</p>
-<p>$\pi^*$ 是 <strong>最优策略</strong>。</p>
-<h2 id="-9"><a href="#-9" class="headerlink" title=""></a></h2><p>值函数</p>
+<p><span class="math display">\[\pi^* = \arg \max_{\pi} J(\pi),\]</span></p>
+<p><span class="math inline">\(\pi^*\)</span> 是 <strong>最优策略</strong>。</p>
+<h2 id="section-9"></h2>
+<p>值函数</p>
 <p>知道一个状态的 <strong>值</strong> 或者状态行动对(state-action pair)很有用。这里的值指的是，如果你从某一个状态或者状态行动对开始，一直按照某个策略运行下去最终获得的期望回报。几乎是所有的强化学习方法，都在用不同的形式使用着值函数。</p>
 <p>这里介绍四种主要函数：</p>
-<ol>
-<li><p><strong>同策略值函数</strong>： $V^{\pi}(s)$，<strong>从某一个状态</strong> $s$ <strong>开始，之后每一步行动都按照策略</strong> $\pi$ <strong>执行</strong><br>$$V^{\pi}(s) = \mathop{E}\limits_{\tau \sim \pi}[{R(\tau)\left| s_0 = s\right.}]$$</p>
-</li>
-<li><p><strong>同策略行动-值函数</strong>： $Q^{\pi}(s,a)$,<strong>从某一个状态</strong> $s$ <strong>开始，先随便执行一个行动</strong> $a$ <strong>（有可能不是按照策略走的），之后每一步都按照固定的策略执行</strong> $\pi$</p>
-</li>
+<ol type="1">
+<li><p><strong>同策略值函数</strong>： <span class="math inline">\(V^{\pi}(s)\)</span>，<strong>从某一个状态</strong> <span class="math inline">\(s\)</span> <strong>开始，之后每一步行动都按照策略</strong> <span class="math inline">\(\pi\)</span> <strong>执行</strong> <span class="math display">\[V^{\pi}(s) = \mathop{E}\limits_{\tau \sim \pi}[{R(\tau)\left| s_0 = s\right.}]\]</span></p></li>
+<li><p><strong>同策略行动-值函数</strong>： <span class="math inline">\(Q^{\pi}(s,a)\)</span>,<strong>从某一个状态</strong> <span class="math inline">\(s\)</span> <strong>开始，先随便执行一个行动</strong> <span class="math inline">\(a\)</span> <strong>（有可能不是按照策略走的），之后每一步都按照固定的策略执行</strong> <span class="math inline">\(\pi\)</span></p></li>
 </ol>
-<p>$$Q^{\pi}(s,a) = \mathop{E}\limits_{\tau \sim \pi}[{R(\tau)\left| s_0 = s, a_0 = a\right.}]$$</p>
-<ol start="3">
-<li><em><em>最优值函数： $V^</em>(s)$，从某一个状态 $s$ 开始，之后每一步都按照 最优策略 $\pi$ 执行</em>*</li>
+<p><span class="math display">\[Q^{\pi}(s,a) = \mathop{E}\limits_{\tau \sim \pi}[{R(\tau)\left| s_0 = s, a_0 = a\right.}]\]</span></p>
+<ol start="3" type="1">
+<li><strong>最优值函数： <span class="math inline">\(V^*(s)\)</span>，从某一个状态 <span class="math inline">\(s\)</span> 开始，之后每一步都按照 最优策略 <span class="math inline">\(\pi\)</span> 执行</strong></li>
 </ol>
-<p>$$V^*(s) = \max_{\pi} \mathop{E}\limits_{\tau \sim \pi}[{]R(\tau)\left| s_0 = s\right.}]$$</p>
-<ol start="4">
-<li><em><em>最优行动-值函数 ： $Q^</em>(s,a)$ ，从某一个状态 $s$ 开始，先随便执行一个行动 $a$ （有可能不是按照策略走的），之后每一步都按照 最优策略 执行 $\pi$</em>*</li>
+<p><span class="math display">\[V^*(s) = \max_{\pi} \mathop{E}\limits_{\tau \sim \pi}[{]R(\tau)\left| s_0 = s\right.}]\]</span></p>
+<ol start="4" type="1">
+<li><strong>最优行动-值函数 ： <span class="math inline">\(Q^*(s,a)\)</span> ，从某一个状态 <span class="math inline">\(s\)</span> 开始，先随便执行一个行动 <span class="math inline">\(a\)</span> （有可能不是按照策略走的），之后每一步都按照 最优策略 执行 <span class="math inline">\(\pi\)</span></strong></li>
 </ol>
-<p>$$Q^*(s,a) = \max_{\pi} \mathop{E}\limits_{\tau \sim \pi}[{R(\tau)\left| s_0 = s, a_0 = a\right.}]$$</p>
+<p><span class="math display">\[Q^*(s,a) = \max_{\pi} \mathop{E}\limits_{\tau \sim \pi}[{R(\tau)\left| s_0 = s, a_0 = a\right.}]\]</span></p>
 <blockquote>
-<p>你应该知道<br>当我们讨论值函数的时候，如果我们没有提到时间依赖问题，那就意味着 折扣累计奖赏。 无衰减收益需要传入时间作为参数，你知道为什么吗？ 提示：时间到了会发生什么？</p>
+<p>你应该知道 当我们讨论值函数的时候，如果我们没有提到时间依赖问题，那就意味着 折扣累计奖赏。 无衰减收益需要传入时间作为参数，你知道为什么吗？ 提示：时间到了会发生什么？</p>
 </blockquote>
 <blockquote>
-<p>你应该知道<br>值函数和行动-值函数两者之间经常出现的联系：<br>$$V^{\pi}(s) = \mathop{E}\limits_{a\sim \pi}[{Q^{\pi}(s,a)}],$$<br>以及：<br>$$V^*(s) = \max_a Q^* (s,a).$$</p>
+<p>你应该知道 值函数和行动-值函数两者之间经常出现的联系： <span class="math display">\[V^{\pi}(s) = \mathop{E}\limits_{a\sim \pi}[{Q^{\pi}(s,a)}],\]</span> 以及： <span class="math display">\[V^*(s) = \max_a Q^* (s,a).\]</span></p>
 </blockquote>
-<h2 id="-10"><a href="#-10" class="headerlink" title=""></a></h2><p>最优 $Q$ 函数和最优行动</p>
-<p>最优行动-值函数 $Q^*(s,a)$ 和被最优策略选中的行动有重要的联系。从定义上讲， $Q^*(s,a)$ 指的是从一个状态 $s$ 开始，任意执行一个行动 $a$ ，然后一直按照最优策略执行下去所获得的回报。</p>
-<p>最优策略 $s$ 会选择从状态 $s$ 开始选择能够最大化期望回报的行动。所以如果我们有了 $Q^*$ ，就可以通过下面的公式直接获得最优行动： $a^*(s)$ ：</p>
-<p>$$a^*(s) = \arg \max_a Q^* (s,a).$$</p>
-<p>注意：可能会有多个行为能够最大化 $Q^*(s,a)$，这种情况下，它们都是最优行为，最优策略可能会从中随机选择一个。但是总会存在一个最优策略每一步选择行为的时候是确定的。</p>
-<h2 id="-11"><a href="#-11" class="headerlink" title=""></a></h2><p>贝尔曼方程</p>
+<h2 id="section-10"></h2>
+<p>最优 <span class="math inline">\(Q\)</span> 函数和最优行动</p>
+<p>最优行动-值函数 <span class="math inline">\(Q^*(s,a)\)</span> 和被最优策略选中的行动有重要的联系。从定义上讲， <span class="math inline">\(Q^*(s,a)\)</span> 指的是从一个状态 <span class="math inline">\(s\)</span> 开始，任意执行一个行动 <span class="math inline">\(a\)</span> ，然后一直按照最优策略执行下去所获得的回报。</p>
+<p>最优策略 <span class="math inline">\(s\)</span> 会选择从状态 <span class="math inline">\(s\)</span> 开始选择能够最大化期望回报的行动。所以如果我们有了 <span class="math inline">\(Q^*\)</span> ，就可以通过下面的公式直接获得最优行动： <span class="math inline">\(a^*(s)\)</span> ：</p>
+<p><span class="math display">\[a^*(s) = \arg \max_a Q^* (s,a).\]</span></p>
+<p>注意：可能会有多个行为能够最大化 <span class="math inline">\(Q^*(s,a)\)</span>，这种情况下，它们都是最优行为，最优策略可能会从中随机选择一个。但是总会存在一个最优策略每一步选择行为的时候是确定的。</p>
+<h2 id="section-11"></h2>
+<p>贝尔曼方程</p>
 <p>全部四个值函数都遵守自一致性的方程叫做 <strong>贝尔曼方程</strong>，贝尔曼方程的基本思想是：</p>
-<p>起始点的值等于当前点预期值和下一个点的值之和。<br>同策略值函数的贝尔曼方程：</p>
-<p>$$\begin{align*}<br>V^{\pi}(s) &amp;= \mathop{E}\limits_{a \sim \pi \atop s’\sim P}[{r(s,a) + \gamma V^{\pi}(s’)}], \<br>Q^{\pi}(s,a) &amp;= \mathop{E}\limits_{s’\sim P}{r(s,a) + \gamma \mathop{E}\limits_{a’\sim \pi}[{Q^{\pi}(s’,a’)}}],<br>\end{align*}$$</p>
-<p>$s’ \sim P$ 是 $s’ \sim P(\cdot |s,a)$ 的简写, 表明下一个状态 $s’$ 是按照转换规则从环境中抽样得到的; $a \sim \pi$ 是 $a \sim \pi(\cdot|s)$ 的简写; $a’ \sim \pi$ 是 $a’ \sim \pi(\cdot|s’)$ 的简写.</p>
+<p>起始点的值等于当前点预期值和下一个点的值之和。 同策略值函数的贝尔曼方程：</p>
+<p><span class="math display">\[\begin{align*}
+V^{\pi}(s) &amp;= \mathop{E}\limits_{a \sim \pi \atop s&#39;\sim P}[{r(s,a) + \gamma V^{\pi}(s&#39;)}], \\
+Q^{\pi}(s,a) &amp;= \mathop{E}\limits_{s&#39;\sim P}{r(s,a) + \gamma \mathop{E}\limits_{a&#39;\sim \pi}[{Q^{\pi}(s&#39;,a&#39;)}}],
+\end{align*}\]</span></p>
+<p><span class="math inline">\(s&#39; \sim P\)</span> 是 <span class="math inline">\(s&#39; \sim P(\cdot |s,a)\)</span> 的简写, 表明下一个状态 <span class="math inline">\(s&#39;\)</span> 是按照转换规则从环境中抽样得到的; <span class="math inline">\(a \sim \pi\)</span> 是 <span class="math inline">\(a \sim \pi(\cdot|s)\)</span> 的简写; <span class="math inline">\(a&#39; \sim \pi\)</span> 是 <span class="math inline">\(a&#39; \sim \pi(\cdot|s&#39;)\)</span> 的简写.</p>
 <p>最优值函数的贝尔曼方程是：</p>
-<p>$$<br>\begin{align*}<br>V^*(s) &amp;= \max_a \mathop{E}\limits_{s’\sim P}[{r(s,a) + \gamma V^*(s’)}], \<br>Q^*(s,a) &amp;= \mathop{E}\limits_{s’\sim P}[{r(s,a) + \gamma \max_{a’} Q^*(s’,a’)}].<br>\end{align*}$$</p>
-<p>同策略值函数和最优值函数的贝尔曼方程最大的区别是是否在行动中去 $\max$ 。这表明智能体在选择下一步行动时，为了做出最优行动，他必须选择能获得最大值的行动。</p>
+<p><span class="math display">\[
+\begin{align*}
+V^*(s) &amp;= \max_a \mathop{E}\limits_{s&#39;\sim P}[{r(s,a) + \gamma V^*(s&#39;)}], \\
+Q^*(s,a) &amp;= \mathop{E}\limits_{s&#39;\sim P}[{r(s,a) + \gamma \max_{a&#39;} Q^*(s&#39;,a&#39;)}].
+\end{align*}\]</span></p>
+<p>同策略值函数和最优值函数的贝尔曼方程最大的区别是是否在行动中去 <span class="math inline">\(\max\)</span> 。这表明智能体在选择下一步行动时，为了做出最优行动，他必须选择能获得最大值的行动。</p>
 <blockquote>
-<p>你应该知道<br>贝尔曼算子（Bellman backup）会在强化学习中经常出现。对于一个状态或一个状态行动对，贝尔曼算子是贝尔曼方程的右边： 奖励加上一个值。</p>
+<p>你应该知道 贝尔曼算子（Bellman backup）会在强化学习中经常出现。对于一个状态或一个状态行动对，贝尔曼算子是贝尔曼方程的右边： 奖励加上一个值。</p>
 </blockquote>
-<h2 id="-12"><a href="#-12" class="headerlink" title=""></a></h2><p>优势函数（Advantage Functions）</p>
+<h2 id="section-12"></h2>
+<p>优势函数（Advantage Functions）</p>
 <p>强化学习中，有些时候我们不需要描述一个行动的绝对好坏，而只需要知道它相对于平均水平的优势。也就是说，我们只想知道一个行动的相对 <strong>优势</strong> 。这就是优势函数的概念。</p>
-<p>一个服从策略 $\pi$ 的优势函数，描述的是它在状态 $s$ 下采取行为 $a$ 比随机选择一个行为好多少（假设之后一直服从策略 $\pi$ ）。数学角度上，优势函数的定义为：</p>
-<p>$$A^{\pi}(s,a) = Q^{\pi}(s,a) - V^{\pi}(s).$$</p>
+<p>一个服从策略 <span class="math inline">\(\pi\)</span> 的优势函数，描述的是它在状态 <span class="math inline">\(s\)</span> 下采取行为 <span class="math inline">\(a\)</span> 比随机选择一个行为好多少（假设之后一直服从策略 <span class="math inline">\(\pi\)</span> ）。数学角度上，优势函数的定义为：</p>
+<p><span class="math display">\[A^{\pi}(s,a) = Q^{\pi}(s,a) - V^{\pi}(s).\]</span></p>
 <blockquote>
-<p>你应该知道<br>我们之后会继续谈论优势函数，它对于策略梯度方法非常重要。</p>
+<p>你应该知道 我们之后会继续谈论优势函数，它对于策略梯度方法非常重要。</p>
 </blockquote>
-<h2 id="数学模型（可选）"><a href="#数学模型（可选）" class="headerlink" title="数学模型（可选）"></a>数学模型（可选）</h2><p>我们已经非正式地讨论了智能体的环境，但是如果你深入研究，可能会发现这样的标准数学形式：马尔科夫决策过程 (Markov Decision Processes, MDPs)。MDP是一个5元组 $\langle S, A, R, P, \rho_0 \rangle$，其中</p>
+<h2 id="数学模型可选">数学模型（可选）</h2>
+<p>我们已经非正式地讨论了智能体的环境，但是如果你深入研究，可能会发现这样的标准数学形式：马尔科夫决策过程 (Markov Decision Processes, MDPs)。MDP是一个5元组 <span class="math inline">\(\langle S, A, R, P, \rho_0 \rangle\)</span>，其中</p>
 <ul>
-<li>$S$ 是所有有效状态的集合,</li>
-<li>$A$ 是所有有效动作的集合,</li>
-<li>$R$ : $S \times A \times S \to \mathbb{R}$ 是奖励函数，其中 $r_t = R(s_t, a_t, s_{t+1})$,</li>
-<li>$P$ : $S \times A \to \mathcal{P}(S)$ 是转态转移的规则，其中 $P(s’|s,a)$ 是在状态 $s$ 下 采取动作 $a$ 转移到状态 s’ 的概率。<br>\rho_0 是开始状态的分布。<br>马尔科夫决策过程指的是服从 马尔科夫性 的系统： 状态转移只依赖与最近的状态和行动，而不依赖之前的历史数据。</li>
+<li><span class="math inline">\(S\)</span> 是所有有效状态的集合,</li>
+<li><span class="math inline">\(A\)</span> 是所有有效动作的集合,</li>
+<li><span class="math inline">\(R\)</span> : <span class="math inline">\(S \times A \times S \to \mathbb{R}\)</span> 是奖励函数，其中 <span class="math inline">\(r_t = R(s_t, a_t, s_{t+1})\)</span>,</li>
+<li><span class="math inline">\(P\)</span> : <span class="math inline">\(S \times A \to \mathcal{P}(S)\)</span> 是转态转移的规则，其中 <span class="math inline">\(P(s&#39;|s,a)\)</span> 是在状态 <span class="math inline">\(s\)</span> 下 采取动作 <span class="math inline">\(a\)</span> 转移到状态 s' 的概率。 _0 是开始状态的分布。 马尔科夫决策过程指的是服从 马尔科夫性 的系统： 状态转移只依赖与最近的状态和行动，而不依赖之前的历史数据。</li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/12/08/reinforcementP1C1/" data-id="ckwyd7my00001t4b9d32gbtdc" data-title="强化学习" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/12/08/reinforcementP1C1/" data-id="ckwydi1p80001wmb93g2f9p73" data-title="强化学习" class="article-share-link">Share</a>
       
       
       
@@ -270,23 +292,24 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="create-a-new-post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
+<h3 id="run-server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
+<h3 id="generate-static-files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
+<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/11/15/hello-world/" data-id="ckwyd7mxq0000t4b93gpd2klw" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/11/15/hello-world/" data-id="ckwydi1oz0000wmb97bibad4d" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
